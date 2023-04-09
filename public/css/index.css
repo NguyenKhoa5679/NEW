@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+   font-family: 'Darker Grotesque', sans-serif;
+   /* font-family: 'Poppins', sans-serif; */
+   font-size: 1.2rem;
+}
+
+a {
+   text-decoration: none;
+   color: #000
+}
+
+.List-cover-books {
+   display: flex;
+   flex-wrap: wrap;
+   /* width: 80%; */
+   /* margin: auto; */
+}
+
+.cover-img-book {
+   width: 129px;
+   height: 192px;
+   /* border: #000 solid 2px; */
+   /* margin: auto; */
+   /* display: block; */
+}
+
+.title-book {
+   position: relative;
+   bottom: 0;
+   margin: auto;
+}
+
+.item {
+   border: #000 solid 2px;
+   ;
+   max-width: 135px;
+   /* width: 135px; */
+   margin: 10px;
+}
+
+.wrap {
+   margin-top: 80px;
+}
+
+.h2{
+   font-size: 2rem;
+   font-weight: 600;
+   
+}
