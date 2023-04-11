@@ -171,7 +171,7 @@
    <?= $this->section("page") ?>
 
    <footer class="footer">
-      <div class="container-fluid bg-light sticky-bottom"> <!-- set background footer -->
+      <div class="container-fluid bg-light mt-5 shadow-lg"> <!-- set background footer -->
          <span>
             <div class="text-center">
                Copyright &copy By NguyenKhoa
@@ -186,7 +186,12 @@
 
    <link rel='stylesheet' href='https://cdn.rawgit.com/daneden/animate.css/v3.1.0/animate.min.css'>
    <script src='https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js'></script>
-
+   
+   <script>
+      $(document).ready(function() {
+         new WOW().init();
+      }
+   </script>
 
    <?= $this->section("page_specific_js") ?>
 </body>

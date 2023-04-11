@@ -7,7 +7,7 @@
 .most-popular {
    margin-top: 60px;
    padding: 30px;
-   background-color: #ae82bd;
+
    border-radius: 23px;
 }
 
@@ -23,7 +23,7 @@ h4 {
 }
 
 .most-popular .item {
-   background-color: #7aa0b3;
+   
    padding: 30px 15px;
    border-radius: 23px;
    margin-bottom: 30px;
@@ -55,7 +55,7 @@ h4 {
 
 .most-popular .item ul li{
    text-align: right;
-   color: #fff;
+   /* color: #fff; */
    font-size: 14px;
 }
 
@@ -64,4 +64,12 @@ ul, li{
    padding: 0px;
    margin: 0px;
    list-style: none;
+}
+
+.fa-custom{
+   color: rgb(47, 138, 14)
+}
+
+.item:hover{
+   box-shadow: 2px 2px 5px #d1d1d1;
 }

@@ -24,6 +24,9 @@ $router->set404('\App\Controllers\Controller@sendNotFound');
 $router->get('/', '\App\Controllers\homeController@index');
 $router->get('/home', '\App\Controllers\homeController@index');
 
+$router->get('/addBook', '\App\Controllers\Story\storyController@addBook');
+$route->get('/editBook', '\App\Controllers\Story\storyController@editBook');
+
 $router->get('story', '\App\Controllers\storyController@index');
 
 $router->run();
