@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 require __DIR__ . '/../bootstrap.php';
 
-define('APPNAME', 'Kei Story'); // ????
+define('APPNAME', 'Kei Story'); 
 
 session_start();
 
@@ -26,7 +26,23 @@ $router->get('/home', '\App\Controllers\homeController@index');
 
 $router->get('/addBook', '\App\Controllers\Story\storyController@addBook');
 $router->get('/editBook', '\App\Controllers\Story\storyController@editBook');
+// $router->get('/deleteBook', '\App\Controllers\Story\storyController@deleteBook');
 
-// $router->get('story', '\App\Controllers\storyController@index');
+$router->get('/addChapter', '\App\Controllers\storyController@addChapter');
+$router->get('/editChapter', '\App\Controllers\storyController@editChapter');
+// $router->get('/deleteChapter', '\App\Controllers\storyController@deleteChapter');
+
+$router->get('/admin', '\App\Controllers\Auth\UserController@admin');
+$router->get('/profile', '\App\Controllers\Auth\UserController@profile');
+$router->get('/myFavorite', '\App\Controllers\Auth\UserController@myFavorite');
+
+// $router->get('/hello/(\w+)', function($name) {
+//     echo 'Hello ' . htmlentities($name);
+// });
+
+$router->get('/movies/(\d+)/photos/(\d+)', function($movieId, $photoId) {
+    echo 'Movie #' . $movieId . ', photo #' . $photoId;
+});
+
 
 $router->run();

@@ -144,19 +144,42 @@
 
                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                   <div class="navbar-nav">
-                     <?php if (!\App\SessionGuard::isUserLoggedIn()): ?>
+                     <?php if (!App\SessionGuard::isUserLoggedIn()): ?>
                         <li class="nav-link"><a href="/login">Login</a></li>
                         <li></li>
                         </li>
                         <li class="nav-link"><a href="/register">Register</a></li>
                      <?php else: ?>
                         <li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                              <?php //$this->e(\App\SessionGuard::user->fullname) ?> 
-                              aaa
+                           <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                              aria-expanded="false">
+                              <?php //$this->e(App\SessionGuard::user->fullname) ?>
+                              <?php echo $_SESSION['fullname']; ?>
                               <span class="caret"></span>
                            </a>
                            <ul class="dropdown-menu" role="menu">
+
+                              <li>
+                                 <a href="/profile">Quản lý tài khoản</a>
+                              </li>
+
+                              <?php if (App\SessionGuard::isAdmin()): ?>
+                                 <li>
+                                    <a href="/admin">Quản trị</a>
+                                 </li>
+                              <?php endif ?>
+
+                              <?php if (App\SessionGuard::isAuthor()): ?>
+                                 <li>
+                                    <a href="/myStory">Truyện của tôi</a>
+                                 </li>
+                              <?php endif ?>
+                              <?php if (App\SessionGuard::isReader()): ?>
+                                 <li>
+                                    <a href="/myFavorite">Danh sách yêu thích</a>
+                                 </li>
+                              <?php endif ?>
+
                               <li>
                                  <a href="/logout" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -189,7 +212,6 @@
             </div>
          </span>
       </div>
-      <?php echo $_SESSION['user_id'] ?>
 
    </footer>
 

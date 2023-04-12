@@ -29,8 +29,8 @@
                                                 <span>Mặc Linh</span>
                                             </h4>
                                             <div class="row">
-                                                <div class="col "><i class="fa fa-star fa-custom"></i> 4.8M</div>
-                                                <div class="col"><i class="fa fa-duotone fa-download fa-custom"></i> 2.3M
+                                                <div class="col "><i class="fa fa-regular fa-star fa-custom"></i> 4.8M</div>
+                                                <div class="col"><i class="fa fa-regular fa-eye fa-custom"></i> 2.3M
                                                 </div>
                                             </div>
                                         </div>
