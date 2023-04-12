@@ -60,26 +60,24 @@ class RegisterController extends Controller
 
 	protected function createUser($data)
 	{
-		// return User::create([
-		// 	'username' => $data['username'],
-		// 	'email' => $data['email'],
-		// 	'password' => password_hash($data['password'], PASSWORD_ARGON2ID),
-		// 	'fullname' => $data['fullname'],
-		// 	'create_at' => date_create('now'),
-		// 	'update_at' => date_create('now'),
-		// 	'role' => 2
-		// ]);
+		return User::create([
+			'username' => $data['username'],
+			'email' => $data['email'],
+			'password' => password_hash($data['password'], PASSWORD_ARGON2ID),
+			'fullname' => $data['fullname'],
+			'role' => 2
+		]);
 
 
-		Manager::insert(
-			'INSERT INTO users (username, password, email, fullname, create_at, update_at, role) VALUES (:username, :password, :email, :fullname, now(), now(), :role)',
-			[
-				'username' => $data['username'],
-				'password' => password_hash($data['password'], PASSWORD_ARGON2ID),
-				'email' => $data['email'],
-				'fullname' => $data['fullname'],
-				'role' => 2
-			]
-		);
+		// Manager::insert(
+		// 	'INSERT INTO users (username, password, email, fullname, create_at, update_at, role) VALUES (:username, :password, :email, :fullname, now(), now(), :role)',
+		// 	[
+		// 		'username' => $data['username'],
+		// 		'password' => password_hash($data['password'], PASSWORD_ARGON2ID),
+		// 		'email' => $data['email'],
+		// 		'fullname' => $data['fullname'],
+		// 		'role' => 2
+		// 	]
+		// );
 	}
 }

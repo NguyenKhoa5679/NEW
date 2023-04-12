@@ -4,6 +4,7 @@ define('ROOTDIR', __DIR__ . DIRECTORY_SEPARATOR);
 
 require_once ROOTDIR . 'vendor/autoload.php';
 
+
 $dotenv = Dotenv\Dotenv::createImmutable(ROOTDIR);
 $dotenv->load();
 

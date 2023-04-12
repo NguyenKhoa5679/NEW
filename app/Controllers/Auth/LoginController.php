@@ -31,13 +31,13 @@ class LoginController extends Controller
 		$user = User::where('username', $user_credentials['username'])->first();
 		if (!$user) {
 			// Người dùng không tồn tại...
-			$errors['username'] = 'Invalid username or password.';
+			$errors['username'] = 'Invalid username';
 		} else if (Guard::login($user, $user_credentials)) {
 			// Đăng nhập thành công...
 			redirect('/home');
 		} else {
 			// Sai mật khẩu...
-			$errors['password'] = 'Invalid username or password.';
+			$errors['password'] = 'Invalid password.';
 		}
 
 		// Đăng nhập không thành công: lưu giá trị trong form, trừ password
@@ -55,7 +55,7 @@ class LoginController extends Controller
 	{
 		return [
 			// 'email' => filter_var($data['email'], FILTER_VALIDATE_EMAIL),
-         'username' => $data['username'] ?? null,
+			'username' => $data['username'] ?? null,
 			'password' => $data['password'] ?? null
 		];
 	}

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
    protected $table = 'users';
-   protected $fillable = ['username', 'email', 'password', 'fullname','create_at', 'update_at', 'role',];
+   protected $fillable = ['username', 'email', 'password', 'fullname', 'role',];
 
    public static function validate(array $data)
    {

@@ -25,8 +25,8 @@ $router->get('/', '\App\Controllers\homeController@index');
 $router->get('/home', '\App\Controllers\homeController@index');
 
 $router->get('/addBook', '\App\Controllers\Story\storyController@addBook');
-$route->get('/editBook', '\App\Controllers\Story\storyController@editBook');
+$router->get('/editBook', '\App\Controllers\Story\storyController@editBook');
 
-$router->get('story', '\App\Controllers\storyController@index');
+// $router->get('story', '\App\Controllers\storyController@index');
 
 $router->run();
