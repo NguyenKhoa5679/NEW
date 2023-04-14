@@ -12,12 +12,12 @@
             
         </div>
         <div class="row">
-            <div class="col-2 mx-2">
-                <img class="card-img-top w-50"
+            <div class="col-sm-3 col-lg-2 mx-2">
+                <img class="card-img-top w-100" style="max-width: 160px; object-fit: cover;"
                     src="https://www.dtv-ebook.com/images/cover_1/he-thong-xuyen-nhanh_-boss-phan-dien-dot-kich-mac-linh.jpg"
                     alt="">
             </div>
-            <div class="col">
+            <div class="col-sm-7">
                 <h4 class="card-text ">
                     <div class="text-truncate" style="max-width:90%">Hệ thống xuyên không: Boss
                         phản diện đột kích</div>

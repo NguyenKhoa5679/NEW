@@ -3,7 +3,41 @@
 <?php $this->start("page") ?>
 
 
-<h2>Hello word</h2>
+<main>
+    <div class="container page-content shadow">
+        <div class="heading-section">
+            <h4>
+                <em>Tài khoản của tôi</em>
+                <div class="nav-border" style="width: 50%; height:1px;"></div>
+            </h4>
+        </div>
+
+        <div>
+            <h5>
+                Giới thiệu
+            </h5>
+
+            <form action="" method="">
+                Tên: 
+                <br>
+                Password cũ:
+                <br>
+
+                password mới:
+                <br>
+
+                Xác nhận password mới:
+                <br>
+
+                Yêu cầu Trở thành tác giả
+                <br>
+
+                submit
+            </form>
+
+        </div>
+    </div>
+</main>
 
 <?php $this->stop() ?>
 
