@@ -6,6 +6,11 @@ use App\Models\User;
 use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 use Illuminate\Database\Capsule\Manager;
+use App\Models\Book;
+use App\Models\Chapter;
+use App\Models\Theloai;
+
+use function PHPSTORM_META\type;
 
 class UserController extends Controller
 {
@@ -23,7 +28,10 @@ class UserController extends Controller
     }
 
     public function myStory(){
-        $this->sendPage('admin/myStory',[]);
+        $books = Book::getBookID($_SESSION['user_id']);
+        // echo  json_encode($books);
+        // echo json_encode($_SESSION['user_id']);
+        $this->sendPage('admin/myStory',['books' => json_encode($books)]);
     }
 
     public function myFavorite(){

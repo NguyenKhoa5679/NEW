@@ -4,6 +4,7 @@
 
 <main>
     <div class="container page-content">
+        
         <div class="heading-section">
             <h4>
                 <em>Truyện Yêu thích</em>

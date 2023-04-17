@@ -23,7 +23,7 @@ class storyController extends Controller{
 
    public function showStory(){
       // Truyền vào id của truyện
-      $this->sendPage('book/showBook', []);
+      $this->sendPage('book/showBook', ['id' => $_GET['id']]);
    }
 
    public function deleteStory(){
