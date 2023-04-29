@@ -117,7 +117,8 @@
 }
 
 .info-book {
-   background: linear-gradient(to right top, #0583F2, #0597F2, #57B7F2, #5EC8F2, #DFEFF2);
+   /*background: linear-gradient(to right top, #0583F2, #0597F2, #57B7F2, #5EC8F2, #DFEFF2);*/
+   background: linear-gradient(to right, #D9298A 5%, #BF2C98 15%, #8332A6, #7C39BF, #403BBF);
    width: 100%;
    padding:  0px 70px 30px 70px;
    /* padding-top: 100px; */

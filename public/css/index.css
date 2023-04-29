@@ -51,3 +51,7 @@ a {
    font-weight: 600;
    
 }
+
+bg-custom{
+   background: linear-gradient(to right, #D9298A 5%, #BF2C98 15%, #8332A6, #7C39BF, #403BBF);
+}

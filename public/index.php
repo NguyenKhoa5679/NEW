@@ -24,13 +24,13 @@ $router->set404('\App\Controllers\Controller@sendNotFound');
 $router->get('/', '\App\Controllers\homeController@index');
 $router->get('/home', '\App\Controllers\homeController@index');
 
-$router->get('/addBook', '\App\Controllers\Story\storyController@addBook');
+$router->get('/addBook', '\App\Controllers\Story\storyController@addStory');
 $router->get('/editBook', '\App\Controllers\Story\storyController@editBook');
 $router->get('/showBook', '\App\Controllers\Story\storyController@showStory');
 // $router->get('/deleteBook', '\App\Controllers\Story\storyController@deleteBook');
 
-$router->get('/addChapter', '\App\Controllers\storyController@addChapter');
-$router->get('/editChapter', '\App\Controllers\storyController@editChapter');
+$router->get('/addChapter', '\App\Controllers\Story\storyController@addChapter');
+$router->get('/editChapter', '\App\Controllers\Story\storyController@editChapter');
 $router->get('/showChapter', '\App\Controllers\Story\storyController@showChapter');
 // $router->get('/deleteChapter', '\App\Controllers\storyController@deleteChapter');
 
