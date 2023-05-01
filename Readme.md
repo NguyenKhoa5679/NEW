@@ -9,7 +9,8 @@
 
 - Them vao danh sach yeu thich
 - Duyet tac pham
-- 
+
+font family : Raleway
 
 ## check
 - Dang ky/ Dang nhap

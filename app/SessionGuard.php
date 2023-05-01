@@ -58,4 +58,7 @@ class SessionGuard
    {
       return isset($_SESSION['user_id']);
    }
+   public static function UserID(){
+       return $_SESSION['user_id'];
+   }
 }

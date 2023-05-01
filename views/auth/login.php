@@ -41,7 +41,6 @@
       </div>
    </section>
 </div>
-
 <?php $this->stop() ?>
 
 <?php $this->start("page_specific_css") ?>

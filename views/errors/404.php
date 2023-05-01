@@ -19,25 +19,29 @@
 <?php $this->stop() ?>
 
 <?php $this->start("page") ?>
-<div class="container">
-   <div class="row">
-      <div class="col-md-12">
-         <div class="error-template">
-            <h1>Page Not Found <small>
-                  <font face="Tahoma" color="red">Error 404</font>
-               </small>
-            </h1>
-            <div class="error-details">
-               Sorry, an error has occured.
-               The page you requested could not be found.
-            </div>
-            <div class="error-actions">
-               <a href="/" class="btn btn-primary btn-lg">
-                  <span class="glyphicon glyphicon-home"></span>
-                  Take Me Home </a>
+   <main>
+      <div class="container heading-section page-content">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="error-template">
+                     <h1>Page Not Found <small>
+                           <font face="Tahoma" color="red">Error 404</font>
+                        </small>
+                     </h1>
+                     <div class="error-details">
+                        Sorry, an error has occured.
+                        The page you requested could not be found.
+                     </div>
+                     <div class="error-actions">
+                        <a href="/" class="btn btn-primary btn-lg">
+                           <span class="glyphicon glyphicon-home"></span>
+                           Take Me Home </a>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
-   </div>
-</div>
+   </main>
 <?php $this->stop() ?>

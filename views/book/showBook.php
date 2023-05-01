@@ -3,7 +3,14 @@
 <?php 
 $BookInfo = \App\Models\Book::getBook($this->e($id));
 $Chaters = \App\Models\Chapter::all()->where('truyen_id', $this->e($id));
-$tacgia = \App\Models\User::getUserID($BookInfo->idtacgia);
+$tacgia = $BookInfo->TacGia;
+
+$theLoaiList = explode(", ", $BookInfo->truyen_theloai);
+$TruyenTheLoai = [];
+foreach ($theLoaiList as &$value) {
+    $theLoai = \App\Models\TheLoai::getTheLoai(intval($value));
+    array_push($TruyenTheLoai, $theLoai->ten_theloai);
+}
 ?> 
 
 <?php $this->start("page") ?>
@@ -12,11 +19,11 @@ $tacgia = \App\Models\User::getUserID($BookInfo->idtacgia);
         <div style="padding-bottom: 2em; width: 100%; gap: 8px"></div>
         <div class="section-container">
             <div class="section-content flex">
-                <img src="Logo.png" alt="" class="img-book rounded border-light border-2" />
+                <img src="<?=$BookInfo->truyen_img?>" class="img-book rounded border-light border-2" />
                 <h1 class="name-book"><?= $BookInfo->truyen_ten ?> </h1>
                 <?php #echo json_encode($BookInfo)?>
                 <div class="detail">
-                    <p>
+                    <p style="color: white; font-size: 24px">
                         <?= $BookInfo->truyen_mota?>
                     </p>
                 </div>
@@ -39,39 +46,50 @@ $tacgia = \App\Models\User::getUserID($BookInfo->idtacgia);
     <section>
         <div>
             <h2 class="about-book-info text-center">Thông tin</h2>
-            <table id="Tacgia" class="table table-responsive-xl table-bordered">
-                <thead class="table-borderless">
+<!--            <table id="Tacgia" class="table table-responsive-xl table-bordered">-->
+<!--                <thead class="table-borderless">-->
+<!--                    <tr>-->
+<!--                        <th></th>-->
+<!--                        <th></th>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                    <tr>-->
+<!--                        <td scope="col">Tác giả</td>-->
+<!--                        <td scope="col">--><?php //= $tacgia ?><!--</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td scope="row">Ngày đăng</td>-->
+<!--                        <td>--><?php //= $BookInfo->truyen_ngaydang?><!--</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td scope="row">Số chương</td>-->
+<!--                        <td>--><?php //= $BookInfo->truyen_sochuong?><!--</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td scope="row">Thể loại</td>-->
+<!--                        <td>--><?php //= join(', ', $TruyenTheLoai) ?><!--</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td scope="row">Tình trạng</td>-->
+<!--                        <td>--><?php //= $BookInfo->truyen_tinhtrang?><!--</td>-->
+<!--                    </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
 
-                </thead>
-                <tbody>
-                    
-                    <tr>
-                        <th scope="col">Tác giả</th>
-                        <th scope="col"><?= $tacgia->fullname ?></th>
-                    </tr>
-                    <tr>
-                        <th scope="row">Ngày đăng</th>
-                        <td><?= $BookInfo->truyen_ngaydang?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Số chương</th>
-                        <td><?= $BookInfo->truyen_sochuong?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Thể loại</th>
-                        <td><?= $BookInfo->truyen_theloai?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Tình trạng</th>
-                        <td><?= $BookInfo->truyen_tinhtrang?></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="col-6">
+                    <p>Tác giả</p>
+                </div>
+                <div class="col-6">
+                    <p><?= $tacgia ?></p>
+                </div>
+            </div>
         </div>
     </section>
 </div>
 
-<div>
+<div class="my-5">
     <div class="container">
         <h2>Danh sách chương</h2>
     </div>
@@ -110,10 +128,11 @@ $tacgia = \App\Models\User::getUserID($BookInfo->idtacgia);
 <link rel="stylesheet" href="/css/home.css">
 <link rel="stylesheet" href="/css/hienthi1.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js">
+
 <?php $this->stop() ?>
 
 <?php $this->start("page_specific_js") ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>-->
 <script
     src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.4/af-2.5.3/b-2.3.6/cr-1.6.2/date-1.4.0/fc-4.2.2/fh-3.3.2/kt-2.8.2/r-2.4.1/rg-1.3.1/rr-1.3.3/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
