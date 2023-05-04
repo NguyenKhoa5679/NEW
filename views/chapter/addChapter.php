@@ -1,61 +1,49 @@
-<?php $this->layout("layouts/default", ["title" => APPNAME]) ?>
+<?php use App\Models\Book;
+
+$this->layout("layouts/default", ["title" => APPNAME]) ?>
+
 
 <?php $this->start("page") ?>
-<?php //$books= json_decode(html_entity_decode($this->e($books)))?>
+<?php
+$book = Book::all()->where('truyen_id', $this->e($truyen_id))->first();
+?>
 
     <main>
         <div class="container page-content">
             <div class="heading-section">
                 <h4 class="row">
                     <div class="col-9">
-                        <em>Thêm chương</em>
+                        <em><?= $book->truyen_ten ?></em>
                         <div class="nav-border" style="width: 15%; height:1px;"></div>
                     </div>
 
                     <div>
-                        <h4 class="text-center">Gió nổi lên rồi</h4>
+                        <h4 class="text-center">
+
+                        </h4>
                     </div>
 
 
-                    <form class="" action="">
-                        <div class="m-1 row">
-                            <label class="col-sm-2 form-label h4">
-                                Tên Chương
-                            </label>
-                            <div class="col-sm-10 pt-2">
-                                <input type="text" class="form-control" name="TenTruyen" id="">
+                    <div class="container p-5">
+                        <form class="" action="/handleCreateChapter" method="POST">
+                            <div class="m-1 row border-bottom w-50 m-auto">
+                                <input type="text" class="fc-custom text-center border-0 rounded-0 fw-bold"
+                                       name="TieuDe" id="" value="Tiêu đề"
+                                >
                             </div>
-                        </div>
-                        <div class="m-1  row">
-                            <label for="formFile" class="col-sm-2 form-label h4">Thêm file nội dung</label>
-                            <div class="col-sm-10 pt-2">
-                                <input class="form-control" type="file" id="formFile">
+                            <div class="container my-3 mx-5 row">
+                               <textarea class="fc-custom border-0" placeholder="Nhập nội dung"
+                                         id="floatingTextarea2" name="noiDung"
+                                         style="min-height: 500px; height: auto"></textarea>
                             </div>
-
-                        </div>
-<!--                        <div class="m-1  row">-->
-<!--                            <label class="col-sm-2 form-label h4">Thể loại</label>-->
-<!--                            <div class="col-sm-10 pt-2">-->
-<!--                                <select class="theLoai form-select" name="theLoai[]" multiple="multiple">-->
-<!--                                    <option value="abc">Alabama</option>-->
-<!--                                    <option value="WY">Wyoming</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                        <div class=" m-1  row">
-                            <label class="col-sm-2 form-label h4">Nội dung</label>
-                            <div class="form-floating col-sm-10 pt-2">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                                      style="height: 100px"></textarea>
-                                <label for="floatingTextarea2" class="h4 form-label mx-2"> Nhập nội dung</label>
+                            <div class="d-flex justify-content-center">
+                                <input hidden="hidden" name="idTruyen" value="<?= $this->e($truyen_id) ?>">
+                                <button type="submit" class="  btn btn-custom-wrap fw-bold" style="color:white;">
+                                    Lưu nội dung
+                                </button>
                             </div>
-
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-primary bg-custom">Thêm chương</button>
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 </h4>
 
             </div>
@@ -66,15 +54,16 @@
 
 <?php $this->start("page_specific_css") ?>
     <link rel="stylesheet" href="/css/home.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/>
     <style>
-        .select2-selection__choice__display{
+        .select2-selection__choice__display {
             font-family: 'Darker Grotesque', sans-serif;
             font-size: 1.2rem;
             font-style: unset;
             font-weight: normal;
         }
-        .select2-selection__choice{
+
+        .select2-selection__choice {
             background: #F2F2F2 !important;
         }
     </style>
@@ -94,6 +83,7 @@
 
             });
         });
+
         function matchStart(params, data) {
             if ($.trim(params.term) === '') {
                 return data;

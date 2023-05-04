@@ -27,19 +27,27 @@ $router->get('/home', '\App\Controllers\homeController@index');
 $router->get('/addBook', '\App\Controllers\Story\storyController@addStory');
 $router->post('/addBook', '\App\Controllers\Story\storyController@createNewStory');
 
-$router->get('/editBook', '\App\Controllers\Story\storyController@editBook');
+$router->get('/editBook', '\App\Controllers\Story\storyController@editStory');
 $router->get('/showBook', '\App\Controllers\Story\storyController@showStory');
 // $router->get('/deleteBook', '\App\Controllers\Story\storyController@deleteBook');
 
-$router->get('/addChapter', '\App\Controllers\Story\storyController@addChapter');
-$router->get('/editChapter', '\App\Controllers\Story\storyController@editChapter');
+$router->post('/addChapter', '\App\Controllers\Story\storyController@addChapter');
+$router->post('/handleCreateChapter', '\App\Controllers\Story\storyController@handleCreateChapter');
+
+$router->post('/editChapter', '\App\Controllers\Story\storyController@editChapter');
+$router->post('/handleEditChapter', '\App\Controllers\Story\storyController@handleEditChapter');
+
 $router->get('/showChapter', '\App\Controllers\Story\storyController@showChapter');
 // $router->get('/deleteChapter', '\App\Controllers\storyController@deleteChapter');
 
 $router->get('/admin', '\App\Controllers\Auth\UserController@admin');
 $router->get('/profile', '\App\Controllers\Auth\UserController@profile');
+$router->post('/profile', '\App\Controllers\Auth\UserController@doiMK');
+
 $router->get('/myFavorite', '\App\Controllers\Auth\UserController@myFavorite');
 $router->get('/myStory', '\App\Controllers\Auth\UserController@myStory');
+
+$router->get('/theLoai', '\App\Controllers\Story\storyController@showTheLoai');
 
 // $router->get('/hello/(\w+)', function($name) {
 //     echo 'Hello ' . htmlentities($name);

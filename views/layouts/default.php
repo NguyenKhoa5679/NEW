@@ -1,5 +1,8 @@
 <?php
-$theLoaiList = \App\Models\TheLoai::all();
+
+use App\Models\TheLoai;
+
+$theLoaiList = TheLoai::all();
 ?>
 
 
@@ -91,7 +94,8 @@ $theLoaiList = \App\Models\TheLoai::all();
         li > a {
             font-size: 20px;
         }
-        .dropdown-toggle{
+
+        .dropdown-toggle {
             font-size: 20px;
         }
     </style>
@@ -107,7 +111,7 @@ $theLoaiList = \App\Models\TheLoai::all();
         <div class="fixed-top bg-light">
             <!-- <div class="nav-border"></div> -->
             <nav class="navbar navbar-expand-lg  px-3">
-                <div class="container-fluid ">
+                <div class="container-fluid px-5 mx-5">
                     <a href="/home" class="navbar-branch"
                        style="width: 12%; min-width: 70px; max-width: 120px; max-height: 70px;"><img
                             src="/img/logo_nav.png" style="width: 90%;"/></a>
@@ -122,32 +126,34 @@ $theLoaiList = \App\Models\TheLoai::all();
                             <a class="nav-link" href="/home">Trang chủ</a>
 
                             <div class="dropdown">
-                                <a href="" class=" nav-link dropdown-toggle" data-bs-toggle="dropdown">Thể
+<!--                                <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Thể-->
+<!--                                    loại<b class="caret"></b></a>-->
+                                <a href="" class="nav-link" data-bs-toggle="dropdown">Thể
                                     loại<b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-2">
                                     <div class="row">
                                         <div class="col-sm">
                                             <ul class="multi-column-dropdown">
                                                 <?php
-                                                foreach ($theLoaiList as &$theLoai){
+                                                for ($i = 0; $i <= count($theLoaiList)/2; $i++) {
                                                     ?>
-                                                <li>
-                                                    <a href="/theLoai?TL=<?=$theLoai->ten_theloai?>"> <?=$theLoai->ten_theloai?></a>
-                                                </li>
+                                                    <li>
+                                                        <a href="/theLoai?TL=<?= $theLoaiList[$i]->ten_theloai ?>"> <?= $theLoaiList[$i]->ten_theloai ?></a>
+                                                    </li>
                                                 <?php } ?>
                                             </ul>
                                         </div>
-<!--                                        <div class="col-sm">-->
-<!--                                            <ul class="multi-column-dropdown">-->
-<!--                                                <li><a href="#">Action</a></li>-->
-<!--                                                <li><a href="#">Another action</a></li>-->
-<!--                                                <li><a href="#">Something else here</a></li>-->
-<!--                                                <li class="divider"></li>-->
-<!--                                                <li><a href="#">Separated link</a></li>-->
-<!--                                                <li class="divider"></li>-->
-<!--                                                <li><a href="#">One more separated link</a></li>-->
-<!--                                            </ul>-->
-<!--                                        </div>-->
+                                        <div class="col-sm">
+                                            <ul class="multi-column-dropdown">
+                                                <?php
+                                                for ($i = floor(count($theLoaiList)/2)+1; $i < count($theLoaiList); $i++) {
+                                                    ?>
+                                                    <li>
+                                                        <a href="/theLoai?TL=<?= $theLoaiList[$i]->ten_theloai ?>"> <?= $theLoaiList[$i]->ten_theloai ?></a>
+                                                    </li>
+                                                <?php } ?>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </ul>
 
@@ -157,7 +163,7 @@ $theLoaiList = \App\Models\TheLoai::all();
 
                 </div>
 
-                <div class="collapse navbar-collapse justify-content-end px-5" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse justify-content-end px-5 mx-5" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <?php if (!App\SessionGuard::isUserLoggedIn()): ?>
                             <li class="nav-link"><a href="/login">Login</a></li>
@@ -189,11 +195,11 @@ $theLoaiList = \App\Models\TheLoai::all();
                                             <a href="/myStory">Truyện của tôi</a>
                                         </li>
                                     <?php endif ?>
-                                    <?php if (App\SessionGuard::isReader()): ?>
+<!--                                    --><?php //if (App\SessionGuard::isReader()): ?>
                                         <li>
                                             <a href="/myFavorite">Danh sách yêu thích</a>
                                         </li>
-                                    <?php endif ?>
+<!--                                    --><?php //endif ?>
 
                                     <li>
                                         <a href="/logout" onclick="event.preventDefault();

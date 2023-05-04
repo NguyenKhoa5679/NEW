@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Book;
 use App\Models\Chapter;
 use App\SessionGuard;
+use function MongoDB\BSON\toJSON;
 
 
 class storyController extends Controller
@@ -57,7 +58,9 @@ class storyController extends Controller
 
     public function editStory()
     {
-        $this->sendPage('book/editBook', []);
+        $idTruyen = $_GET['id']?? $_SESSION['truyen_id'];
+
+        $this->sendPage('book/editBook', ['id' => $idTruyen]);
     }
 
     public function showStory()
@@ -74,12 +77,43 @@ class storyController extends Controller
 
     public function addChapter()
     {
-        $this->sendPage('chapter/addChapter', []);
+        $idTruyen = $_POST['idTruyen'];
+        $this->sendPage('chapter/addChapter', ['truyen_id' =>$idTruyen]);
+    }
+
+    public function handleCreateChapter(){
+        $idtruyen = $_POST['idTruyen'];
+        $chuong_so = Chapter::countChapter($idtruyen) + 1;
+        $TieuDe = $_POST['TieuDe'];
+        $NoiDung = $_POST['noiDung'];
+        $luotxem = 0;
+        Chapter::create([
+            'chuong_so' => $chuong_so,
+            'chuong_ten' => $TieuDe,
+            'chuong_noidung' => $NoiDung,
+            'luotxem' => $luotxem,
+            'truyen_id' =>$idtruyen
+        ]);
+        redirect('/editBook', ['truyen_id'=>$idtruyen]);
+
     }
 
     public function editChapter()
     {
-        $this->sendPage('chapter/editChapter', []);
+        $idChuong = $_POST['idChuong'];
+        $this->sendPage('chapter/editChapter', ['chuong_id' => $idChuong]);
+    }
+
+    public function handleEditChapter(){
+        $idChuong = $_POST['idChuong'];
+        $noidung = $_POST['noiDung'];
+        $tieude = $_POST['TieuDe'];
+        $chapter = Chapter::where('chuong_id', $idChuong)->update([
+            'chuong_ten' => $tieude,
+            'chuong_noidung' =>$noidung
+        ]);
+        redirect('/editBook', ['truyen_id' => Chapter::getChapter($idChuong)->truyen_id]);
+
     }
 
     public function showChapter()
@@ -92,6 +126,14 @@ class storyController extends Controller
     {
         // Xóa trong csdl
         $this->sendPage('chapter/deleteChapter', []);
+    }
+
+    public function showTheLoai()
+    {
+//        echo $_GET['TL'].'\n';
+//        $IDTheLoai = \App\Models\TheLoai::getIDTheLoai($_GET['TL'])->truyen_theloai;
+//        echo \App\Models\Book::getBookByTheLoai($IDTheLoai);
+        $this->sendPage('admin/theLoai', ['theLoai' => $_GET['TL']]);
     }
 
 

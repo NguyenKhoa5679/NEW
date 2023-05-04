@@ -15,4 +15,11 @@ class Chapter extends Model
    {
       return $this->hasOne(book::class);
    }
+
+   public static function countChapter($idTruyen){
+       return self::all()->where('truyen_id', $idTruyen)->count();
+   }
+   public static function getChapter($idChapter){
+       return self::all()->where('chuong_id', $idChapter)->first();
+   }
 }

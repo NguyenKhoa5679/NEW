@@ -8,60 +8,74 @@
             <div class="heading-section">
                 <h4 class="row">
                     <div class="col-9">
-                        <em>Thêm Chương</em>
+                        <em>Thêm Thông tin Truyện</em>
                         <div class="nav-border" style="width: 15%; height:1px;"></div>
                     </div>
+                </h4>
 
 
-                    <form class="" action="" method="POST" enctype="multipart/form-data">
-                        <div class="m-1 row">
-                            <label class="col-sm-2 form-label h4">
-                                Tên truyện
-                            </label>
-                            <div class="col-sm-10 pt-2">
-                                <input type="text" class="form-control" name="TenTruyen" id="" required>
+                    <div class="container shadow rounded-3 m-3 p-4">
+<!--                        //TODO: chuyen sang addchuong và tao chuong dau tien trong csdl-->
+                        <form class="" action="" method="POST" enctype="multipart/form-data">
+                            <div class="mx-1 mb-4 row">
+                                <label class="form-label h3 fw-bold">
+                                    Tiêu đề
+                                </label>
+                                <div class="">
+                                    <input type="text" class="form-control" name="TenTruyen" id="" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="m-1  row">
-                            <label for="themanh" class="col-sm-2 form-label h4">Thêm ảnh</label>
-                            <div class="col-sm-10 pt-2">
-                                <input class="form-control" type="file" id="Anh" name="Anh">
+                            <div class="mx-1 mb-4 row">
+                                <label for="themanh" class="form-label h3 fw-bold">
+                                    Thêm ảnh
+                                </label>
+                                <div class="">
+                                    <input class="form-control" type="file" id="Anh" name="Anh">
+                                </div>
+                            </div>
+                            <div class="mx-1 mb-4 row">
+                                <label class="form-label h3 fw-bold">
+                                    Thể loại
+                                </label>
+                                <div class="">
+                                    <select class="theLoai form-select" name="theLoai[]" multiple="multiple">
+                                        <?php $theloaiList = \App\Models\TheLoai::getListTheLoai();
+                                        foreach ($theloaiList as &$theloai) {
+                                            ?>
+                                            <option
+                                                value="<?= $theloai->truyen_theloai ?>"> <?= $theloai->ten_theloai ?> </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mx-1 mb-4 row">
+                                <label for="formFile" class="form-label h3 fw-bold">
+                                    Tác giả
+                                </label>
+                                <div class=""">
+                                    <input class="form-control" type="text" id="tacgia" name="TacGia">
+                                </div>
+
+                            </div>
+                            <div class="mx-1 mb-4 row">
+                                <label class="form-label h3 fw-bold">
+                                    Mô tả
+                                </label>
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                              id="moTa"
+                                              style="height: 100px" name="moTa">
+                                    </textarea>
+<!--                                    <label for="moTa" class="h4 form-label mx-2"> Nhập mô tả</label>-->
+                                </div>
+
+                            </div>
+                            <div class="btn-custom-wrap ms-auto me-3" style="height: 47.61px;">
+                                <button type="submit" class="btn btn-custom p-1">Thêm truyện</button>
                             </div>
 
-                        </div>
-                        <div class="m-1  row">
-                            <label class="col-sm-2 form-label h4">Thể loại</label>
-                            <div class="col-sm-10 pt-2">
-                                <select class="theLoai form-select" name="theLoai[]" multiple="multiple">
-                                    <?php $theloaiList = \App\Models\TheLoai::getListTheLoai();
-                                        foreach ($theloaiList as &$theloai){
-                                    ?>
-                                        <option value="<?=$theloai->truyen_theloai?>"> <?=$theloai->ten_theloai?> </option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="m-1  row">
-                            <label for="formFile" class="col-sm-2 form-label h4">Tác giả</label>
-                            <div class="col-sm-10 pt-2">
-                                <input class="form-control" type="text" id="tacgia" name="TacGia">
-                            </div>
-
-                        </div>
-                        <div class=" m-1  row">
-                            <label class="col-sm-2 form-label h4">Mô tả</label>
-                            <div class="form-floating col-sm-10 pt-2">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="moTa"
-                                      style="" name="moTa"></textarea>
-                                <label for="moTa" class="h4 form-label mx-2"> Nhập mô tả</label>
-                            </div>
-
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-primary">Thêm truyện</button>
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 </h4>
 
             </div>

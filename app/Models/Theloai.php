@@ -13,4 +13,7 @@ class TheLoai extends Model{
     public static function getListTheLoai(){
         return self::all();
     }
+    public static function getIDTheLoai($tenTheLoai){
+        return self::all()->where('ten_theloai', $tenTheLoai)->first();
+    }
 }

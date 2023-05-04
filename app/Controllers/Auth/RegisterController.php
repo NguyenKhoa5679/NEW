@@ -69,7 +69,7 @@ class RegisterController extends Controller
 		]);
 
 
-		// Manager::insert(
+//		 Manager::insert(
 		// 	'INSERT INTO users (username, password, email, fullname, create_at, update_at, role) VALUES (:username, :password, :email, :fullname, now(), now(), :role)',
 		// 	[
 		// 		'username' => $data['username'],

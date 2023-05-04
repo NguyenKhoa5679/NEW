@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Capsule\Manager;
 
 class Book extends Model
 {
@@ -21,5 +22,14 @@ class Book extends Model
    public static function getBook($id){
       return self::all()->where('truyen_id', $id)->first();
    }
+
+   public static function getBookByTheLoai($idtheloai){
+       return Manager::select("Select * from truyen where truyen_theloai like concat('%', :idtheloai, '%');",
+       [
+           'idtheloai' => $idtheloai
+       ]);
+//       return self::all()->where('truyen_theloai', 'like',  '"%'.$idtheloai.'%"');
+   }
+
 
 }

@@ -1,4 +1,5 @@
-<?php use App\Models\theloai;
+<?php use App\Models\Chapter;
+use App\Models\theloai;
 
 $this->layout("layouts/default", ["title" => APPNAME]) ?>
 
@@ -8,22 +9,25 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
     <main>
         <div class="container page-content">
             <div class="heading-section">
-                <h4 class="row">
-                    <div class="col-9">
+                <div class="row">
+                    <h4 class="col-9">
                         <em>Truyện của tôi</em>
                         <div class="nav-border" style="width: 15%; height:1px;"></div>
-                    </div>
+                    </h4>
 
-                    <div class="col-2">
-                        <a name="" id="" class="btn btn-primary" href="/addBook" role="button">Thêm truyện</a>
+                    <div class="col d-flex justify-content-end">
+                        <div class="d-flex btn-custom-wrap">
+                            <a id="" class=" ms-auto btn-custom" href="/addBook" role="button">Thêm truyện</a>
+                        </div>
                     </div>
-                </h4>
+                </div>
             </div>
         </div>
-        <div class="container">
+
+        <div class="container shadow p-3 rounded-3">
             <?php foreach ($books as $key => $book) { ?>
-                <div class="row py-2 mx-1">
-                    <a href= "/showBook?<?=$book->truyen_ten?>&id=<?=$book->truyen_id?>" class="row">
+                <div class="row py-2 mx-1 border-bottom border-black">
+                    <a href="/editBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>" class="row col">
                         <div class="col-sm-3 col-lg-2 mx-2">
                             <img class="card-img-top w-100" style="max-width: 160px; object-fit: cover;"
                                  src="<?= $book->truyen_img ?>"
@@ -45,13 +49,57 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                 echo join(', ', $TruyenTheLoai);
                                 ?>
                             </h5>
-                            <!--                    <div class="">-->
-                            <!--                        <div class=""><i class="fa fa-regular fa-star fa-custom"></i> 4.8M</div>-->
-                            <!--                        <div class=""><i class="fa fa-regular fa-eye fa-custom"></i> 2.3M-->
-                            <!--                        </div>-->
-                            <!--                    </div>-->
+                            <div class="">
+
+                                <div class=""><i class="fa fa-regular fa-eye fa-custom"></i>
+                                    <!--                                                        //TODO:: THÊM LƯỢT XEM-->
+                                </div>
+                            </div>
                         </div>
                     </a>
+                    <div class="col-sm-2">
+                        <div class="ms-auto dropdown bg-custom rounded-2 d-flex justify-content-end"
+                             style="width: fit-content">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    style="color: white">
+                                <span class="fw-bold">Tiếp tục viết</span>
+                            </button>
+                            <ul class="dropdown-menu rounded-0 pb-0">
+                                <div class="container overflow-y-auto">
+                                    <?php
+                                    $chuongList = Chapter::all()->where('truyen_id', $book->truyen_id);
+                                    foreach ($chuongList as $chuong) {
+                                        ?>
+                                        <li>
+                                            <form action="/editChapter" method="post">
+                                                <input name="idChuong" value="<?= $chuong->chuong_id?>" hidden="hidden">
+                                                <button type="submit"><?= $chuong->chuong_ten ?></button>
+                                            </form>
+                                            <a href="/editChapter"><?= $chuong->chuong_ten ?></a>
+                                            <!--                                            //TODO: editchuong-->
+                                        </li>
+                                    <?php } ?>
+                                </div>
+
+                                <li class="shadow-lg mb-0" style="">
+                                    <div class="nav-border w-100"></div>
+                                    <form method="POST" action="/addChapter">
+                                        <input name="idTruyen" value="<?= $book->truyen_id ?>" hidden="hidden">
+                                        <button type="submit" class="btn w-100 text-center fw-bold fs-5 bg-custom"
+                                                style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
+                                            <i class="fa-solid fa-plus fa-xs"></i> Chương mới
+                                        </button>
+                                    </form>
+
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+
                 </div>
             <?php } ?>
         </div>
@@ -65,5 +113,13 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
 <?php $this->stop() ?>
 
 <?php $this->start("page_specific_js") ?>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+            integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+            integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
 <?php $this->stop() ?>

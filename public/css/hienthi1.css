@@ -85,7 +85,7 @@
    --page-section-container-margin: 0em;
    --home-page-hero-image-display: block;
    --home-page-section-content-pading: 3em 0em;
-   font-size: 87.5%
+   /*font-size: 87.5%*/
 }
 
 
@@ -174,7 +174,7 @@
 }
 
 .white-space {
-   /* padding: 0.5 em; */
+    padding: 0.5rem;
 }
 
 .button {

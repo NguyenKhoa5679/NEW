@@ -18,7 +18,7 @@
                             <div class="row px-1">
                                 <!--                            --><?php //for ($i = 0; $i < 10; $i++) { ?>
                                 <div class="col-lg-2 col-sm-6">
-                                    <div class="item2 card">
+                                    <div class="item2 card mb-4 ">
                                         <img class="card-img-top w-100 h-50"
                                              style="height: 284px; object-fit: cover; width: 182px"
                                              src="https://www.dtv-ebook.com/images/cover_1/he-thong-xuyen-nhanh_-boss-phan-dien-dot-kich-mac-linh.jpg"
@@ -30,11 +30,6 @@
                                                 </div>
                                                 <span>Mặc Linh</span>
                                             </h4>
-                                            <!--                                            <div class="row">-->
-                                            <!--                                                <div class="col "><i class="fa fa-regular fa-star fa-custom"></i> 4.8M</div>-->
-                                            <!--                                                <div class="col"><i class="fa fa-regular fa-eye fa-custom"></i> 2.3M-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
