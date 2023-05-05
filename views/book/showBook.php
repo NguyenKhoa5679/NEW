@@ -135,4 +135,6 @@ $sochuong = Chapter::countChapter($BookInfo->truyen_id);
             $('#Tacgia').DataTable();
         });
     </script>
+
+
 <?php $this->stop() ?>

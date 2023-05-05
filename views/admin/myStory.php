@@ -24,7 +24,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
             </div>
         </div>
 
-        <div class="container shadow p-3 rounded-3">
+        <div class="container shadow-lg p-3 rounded-3 mb-5">
             <?php foreach ($books as $key => $book) { ?>
                 <div class="row py-2 mx-1 border-bottom border-black">
                     <a href="/editBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>" class="row col">
@@ -58,7 +58,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                         </div>
                     </a>
                     <div class="col-sm-2">
-                        <div class="ms-auto dropdown bg-custom rounded-2 d-flex justify-content-end"
+                        <div class="row mt-2 ms-auto dropdown bg-custom rounded-2 d-flex justify-content-end"
                              style="width: fit-content">
                             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false"
@@ -66,7 +66,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                 <span class="fw-bold">Tiếp tục viết</span>
                             </button>
                             <ul class="dropdown-menu rounded-0 pb-0">
-                                <div class="container overflow-y-auto">
+                                <div class="container overflow-auto" style="height: 100px">
                                     <?php
                                     $chuongList = Chapter::all()->where('truyen_id', $book->truyen_id);
                                     foreach ($chuongList as $chuong) {
@@ -74,9 +74,9 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                         <li>
                                             <form action="/editChapter" method="post">
                                                 <input name="idChuong" value="<?= $chuong->chuong_id?>" hidden="hidden">
-                                                <button type="submit"><?= $chuong->chuong_ten ?></button>
+                                                <button class="btn fs-5" type="submit"><?= $chuong->chuong_ten ?></button>
                                             </form>
-                                            <a href="/editChapter"><?= $chuong->chuong_ten ?></a>
+<!--                                            <a href="/editChapter">--><?php //= $chuong->chuong_ten ?><!--</a>-->
                                             <!--                                            //TODO: editchuong-->
                                         </li>
                                     <?php } ?>
@@ -88,14 +88,20 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                         <input name="idTruyen" value="<?= $book->truyen_id ?>" hidden="hidden">
                                         <button type="submit" class="btn w-100 text-center fw-bold fs-5 bg-custom"
                                                 style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
-                                            <i class="fa-solid fa-plus fa-xs"></i> Chương mới
+                                            <i class="fa fa-solid fa-plus fa-xs"></i> Chương mới
                                         </button>
                                     </form>
-
-
                                 </li>
-
                             </ul>
+                        </div>
+                        <div class="row text-end mt-3">
+                            <form action="/deleteBook" method="post" class="p-0">
+                                <input type="text" value="<?= $book->truyen_id?>" hidden="hidden" name="idTruyen">
+                                <button type="submit" class="btn fw-bold fs-5 bg-custom text-end"
+                                        style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
+                                    <i class="fa fa-light fa-trash"></i> Xóa Truyện
+                                </button>
+                            </form>
                         </div>
                     </div>
 

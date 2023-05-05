@@ -5,7 +5,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
 
 <?php $this->start("page") ?>
 <?php
-$chapter = \App\Models\Chapter::all()->where('truyen_id', $this->e($chuong_id))->first();
+$chapter = \App\Models\Chapter::all()->where('chuong_id', $this->e($chuong_id))->first();
 $book = Book::getBook($chapter->truyen_id);
 ?>
 

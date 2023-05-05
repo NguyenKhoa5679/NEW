@@ -126,8 +126,8 @@ $theLoaiList = TheLoai::all();
                             <a class="nav-link" href="/home">Trang chủ</a>
 
                             <div class="dropdown">
-<!--                                <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Thể-->
-<!--                                    loại<b class="caret"></b></a>-->
+                                <!--                                <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Thể-->
+                                <!--                                    loại<b class="caret"></b></a>-->
                                 <a href="" class="nav-link" data-bs-toggle="dropdown">Thể
                                     loại<b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-2">
@@ -135,7 +135,7 @@ $theLoaiList = TheLoai::all();
                                         <div class="col-sm">
                                             <ul class="multi-column-dropdown">
                                                 <?php
-                                                for ($i = 0; $i <= count($theLoaiList)/2; $i++) {
+                                                for ($i = 0; $i <= count($theLoaiList) / 2; $i++) {
                                                     ?>
                                                     <li>
                                                         <a href="/theLoai?TL=<?= $theLoaiList[$i]->ten_theloai ?>"> <?= $theLoaiList[$i]->ten_theloai ?></a>
@@ -146,7 +146,7 @@ $theLoaiList = TheLoai::all();
                                         <div class="col-sm">
                                             <ul class="multi-column-dropdown">
                                                 <?php
-                                                for ($i = floor(count($theLoaiList)/2)+1; $i < count($theLoaiList); $i++) {
+                                                for ($i = floor(count($theLoaiList) / 2) + 1; $i < count($theLoaiList); $i++) {
                                                     ?>
                                                     <li>
                                                         <a href="/theLoai?TL=<?= $theLoaiList[$i]->ten_theloai ?>"> <?= $theLoaiList[$i]->ten_theloai ?></a>
@@ -195,11 +195,11 @@ $theLoaiList = TheLoai::all();
                                             <a href="/myStory">Truyện của tôi</a>
                                         </li>
                                     <?php endif ?>
-<!--                                    --><?php //if (App\SessionGuard::isReader()): ?>
-                                        <li>
-                                            <a href="/myFavorite">Danh sách yêu thích</a>
-                                        </li>
-<!--                                    --><?php //endif ?>
+                                    <!--                                    --><?php //if (App\SessionGuard::isReader()): ?>
+                                    <li>
+                                        <a href="/myFavorite">Danh sách yêu thích</a>
+                                    </li>
+                                    <!--                                    --><?php //endif ?>
 
                                     <li>
                                         <a href="/logout" onclick="event.preventDefault();
