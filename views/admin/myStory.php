@@ -27,6 +27,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
         <div class="container shadow-lg p-3 rounded-3 mb-5">
             <?php foreach ($books as $key => $book) { ?>
                 <div class="row py-2 mx-1 border-bottom border-black">
+<!--                    Hien thi thong tin -->
                     <a href="/editBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>" class="row col">
                         <div class="col-sm-3 col-lg-2 mx-2">
                             <img class="card-img-top w-100" style="max-width: 160px; object-fit: cover;"
@@ -57,7 +58,10 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                             </div>
                         </div>
                     </a>
+
+<!--                    tiep tuc viet / Xoa -->
                     <div class="col-sm-2">
+<!--                        Tiep tuc -->
                         <div class="row mt-2 ms-auto dropdown bg-custom rounded-2 d-flex justify-content-end"
                              style="width: fit-content">
                             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -73,11 +77,11 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                         ?>
                                         <li>
                                             <form action="/editChapter" method="post">
-                                                <input name="idChuong" value="<?= $chuong->chuong_id?>" hidden="hidden">
-                                                <button class="btn fs-5" type="submit"><?= $chuong->chuong_ten ?></button>
+                                                <input name="idChuong" value="<?= $chuong->chuong_id ?>"
+                                                       hidden="hidden">
+                                                <button class="btn fs-5 text-truncate"
+                                                        type="submit"><?= "Chương " . $chuong->chuong_so .": " . $chuong->chuong_ten ?></button>
                                             </form>
-<!--                                            <a href="/editChapter">--><?php //= $chuong->chuong_ten ?><!--</a>-->
-                                            <!--                                            //TODO: editchuong-->
                                         </li>
                                     <?php } ?>
                                 </div>
@@ -94,18 +98,21 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                 </li>
                             </ul>
                         </div>
+<!--                        Xoa -->
                         <div class="row text-end mt-3">
-                            <form action="/deleteBook" method="post" class="p-0">
-                                <input type="text" value="<?= $book->truyen_id?>" hidden="hidden" name="idTruyen">
-                                <button type="submit" class="btn fw-bold fs-5 bg-custom text-end"
+                            <form action="/deleteBook" method="post">
+                                <input type="text" value="<?= $book->truyen_id ?>"
+                                       hidden="hidden"
+                                       name="idTruyen">
+                                <button type="submit" class="btn fw-bold fs-5 bg-custom text-end" data-bs-toggle="modal"
+                                        data-bs-target="#modelId"
                                         style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
                                     <i class="fa fa-light fa-trash"></i> Xóa Truyện
                                 </button>
+
                             </form>
                         </div>
                     </div>
-
-
                 </div>
             <?php } ?>
         </div>

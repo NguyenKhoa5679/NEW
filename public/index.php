@@ -43,6 +43,10 @@ $router->post('/deleteChapter', '\App\Controllers\Story\storyController@deleteCh
 $router->get('/showChapter', '\App\Controllers\Story\storyController@showChapter');
 
 
+// ----------- Comment --------------
+$router->post('/newComment', '\App\Controllers\Auth\UserController@newComment');
+$router->post('/editComment', '\App\Controllers\Auth\UserController@editComment');
+
 // --------------- general ----------
 $router->get('/', '\App\Controllers\homeController@index');
 $router->get('/home', '\App\Controllers\homeController@index');

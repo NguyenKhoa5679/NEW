@@ -61,4 +61,8 @@ class SessionGuard
    public static function UserID(){
        return $_SESSION['user_id'];
    }
+
+   public static function isUser($idUser){
+       return $_SESSION['user_id'] == $idUser;
+   }
 }

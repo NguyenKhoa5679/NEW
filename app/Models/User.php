@@ -34,6 +34,9 @@ class User extends Model
       return $errors;
    }
 
-//   public static function getUserbyID($id)
+   public static function getUserbyIDUser($idUser){
+       return self::all()->where('user_id', $idUser)->first();
+
+   }
 
 }

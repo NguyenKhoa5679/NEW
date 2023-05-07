@@ -15,7 +15,6 @@
 
 
                     <div class="container shadow rounded-3 m-3 p-4">
-<!--                        //TODO: chuyen sang addchuong và tao chuong dau tien trong csdl-->
                         <form class="" action="" method="POST" enctype="multipart/form-data">
                             <div class="mx-1 mb-4 row">
                                 <label class="form-label h3 fw-bold">
@@ -64,8 +63,7 @@
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
                                               id="moTa"
-                                              style="height: 100px" name="moTa">
-                                    </textarea>
+                                              style="height: 100px" name="moTa"></textarea>
 <!--                                    <label for="moTa" class="h4 form-label mx-2"> Nhập mô tả</label>-->
                                 </div>
 

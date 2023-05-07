@@ -15,9 +15,6 @@ font family : Raleway
 ## check
 - Dang ky/ Dang nhap
 - tac gia
-  - Them truyen
-  - gan nhan
-  - Them chuong/ sua chuong
 - 
 ## Phan quyen
 - nguoi dung
@@ -29,10 +26,10 @@ font family : Raleway
 - tac gia
   - Them truyen (check)
   - them chuong (check)
-  - xoa truyen
-  - edit truyen
+  - xoa truyen (check)
+  - edit truyen (check)
   - edit chuogn (check)
-  - xoa chuong
+  - xoa chuong (check)
   - gan nhan (check)
   - 
 - admin

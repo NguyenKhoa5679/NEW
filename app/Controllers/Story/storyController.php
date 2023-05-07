@@ -83,15 +83,22 @@ class storyController extends Controller
         $this->sendPage('book/showBook', ['id' => $_GET['id']]);
     }
 
-    public function deleteStory()
+    public function deleteBook()
     {
+        $idTruyen = $_POST['idTruyen'];
+        echo $idTruyen;
         try{
-
-        }
-        catch (PDOException $ex){
-
+        Manager::beginTransaction();
+        Chapter::where('truyen_id',$idTruyen)->delete();
+        $img_path = Book::getBook($idTruyen)->truyen_img;
+        unlink($img_path);
+        Book::where('truyen_id', $idTruyen)->delete();
+        Manager::commit();
     }
-        $this->sendPage('book/deleteBook', []);
+    catch (PDOException $ex){
+        Manager::rollBack();
+    }
+        redirect('/myStory', []);
     }
 
     public function addChapter()
@@ -139,8 +146,9 @@ class storyController extends Controller
 
     public function showChapter()
     {
-        //TODO: Truyền vào id của truyện, chương
-        $this->sendPage('chapter/showChapter', []);
+        $idTruyen = $_GET['truyen'];
+        $idChuong = $_GET['chuong'];
+        $this->sendPage('chapter/showChapter', ['truyen_id'=>$idTruyen, 'chuong_id'=>$idChuong]);
     }
 
     public function deleteChapter()

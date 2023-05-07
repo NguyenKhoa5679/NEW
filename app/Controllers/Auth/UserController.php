@@ -2,8 +2,10 @@
 
 namespace App\Controllers\Auth;
 
+use App\Models\Comment;
 use App\Models\User;
 use App\Controllers\Controller;
+use App\SessionGuard;
 use App\SessionGuard as Guard;
 use Illuminate\Database\Capsule\Manager;
 use App\Models\Book;
@@ -54,6 +56,46 @@ class UserController extends Controller
             echo '<script>alert("Mật khẩu cũ không đúng! Vui lòng nhập lại!")</script>';
             $this->sendPage('admin/profile', ['iduser' => $idUser]);
         }
+
+    }
+
+    public function newComment(){
+        $idTruyen = $_POST['idTruyen'];
+        $truyen = Book::getBook($idTruyen);
+        $idUser = SessionGuard::UserID();
+        $rating = $_POST['rating'];
+        $noiDung = $_POST['noiDung'];
+
+        Comment::create([
+            'truyen_id' => $idTruyen,
+            'user_id' => $idUser,
+            'rating' => $rating,
+            'noiDung' => $noiDung
+        ]);
+        $url = '/showBook?'.$truyen->truyen_ten.'&id='.$idTruyen;
+        redirect($url, []);
+    }
+
+    public function editComment(){
+        $idTruyen = $_POST['idTruyen'];
+        $truyen = Book::getBook($idTruyen);
+        $idUser = SessionGuard::UserID();
+        $rating = $_POST['rating'];
+        $noiDung = $_POST['noiDung'];
+        $idbinhluan = $_POST['idbinhluan'];
+//        echo $noiDung;
+//        echo "</br>" . $idbinhluan;
+        Comment::where('idbinhluan', $idbinhluan)->update([
+            'rating' => $rating,
+            'noiDung' => $noiDung
+        ]);
+
+
+        $url = '/showBook?'.$truyen->truyen_ten.'&id='.$idTruyen;
+        redirect($url, []);
+    }
+
+    public function deleteComment(){
 
     }
 

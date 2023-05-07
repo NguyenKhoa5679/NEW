@@ -134,8 +134,8 @@ $sochuong = Chapter::countChapter($BookInfo->truyen_id);
     </div>
 
 
-    <div class="container about-book mt-3 mb-5">
-        <section>
+    <div class="container-fluid  about-book mx-3  mt-3 mb-5 row">
+        <section class="col-9">
             <div class="row">
                 <h2 class="about-book-info col">Danh sách chương</h2>
                 <form method="POST" action="/addChapter" class="col-2">
@@ -175,6 +175,22 @@ $sochuong = Chapter::countChapter($BookInfo->truyen_id);
 
                     </div>
                 <?php } ?>
+            </div>
+        </section>
+
+        <section class="col-3">
+            <div class="row">
+                <h2 class="about-book-info col">Bình Luận</h2>
+                <form method="POST" action="/addChapter" class="col-5">
+                    <input name="idTruyen" value="<?= $BookInfo->truyen_id ?>" hidden="hidden">
+                    <button type="submit" class="btn w-100 text-center fw-bold fs-5 bg-custom"
+                            style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
+                        <i class="fa-solid fa-plus fa-xs"></i> Thêm bình luận
+                    </button>
+                </form>
+            </div>
+            <div class="border rounded shadow">
+<!--TODO: Thêm bình luận-->
             </div>
         </section>
     </div>

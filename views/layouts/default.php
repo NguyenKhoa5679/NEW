@@ -195,11 +195,11 @@ $theLoaiList = TheLoai::all();
                                             <a href="/myStory">Truyện của tôi</a>
                                         </li>
                                     <?php endif ?>
-                                    <!--                                    --><?php //if (App\SessionGuard::isReader()): ?>
+                                                                        <?php if (App\SessionGuard::isReader() or App\SessionGuard::isAuthor()): ?>
                                     <li>
                                         <a href="/myFavorite">Danh sách yêu thích</a>
                                     </li>
-                                    <!--                                    --><?php //endif ?>
+                                                                        <?php endif ?>
 
                                     <li>
                                         <a href="/logout" onclick="event.preventDefault();

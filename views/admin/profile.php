@@ -143,11 +143,6 @@ $User = User::all()->where('user_id', $this->e($iduser))->first();
                                                 echo join(', ', $TruyenTheLoai);
                                                 ?>
                                             </h5>
-                                            <!--                    <div class="">-->
-                                            <!--                        <div class=""><i class="fa fa-regular fa-star fa-custom"></i> 4.8M</div>-->
-                                            <!--                        <div class=""><i class="fa fa-regular fa-eye fa-custom"></i> 2.3M-->
-                                            <!--                        </div>-->
-                                            <!--                    </div>-->
                                         </div>
                                     </a>
                                 </div>
