@@ -3,6 +3,9 @@
 namespace App\Controllers\Story;
 
 use App\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Favorite;
+use App\Models\Report;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Chapter;
@@ -87,23 +90,25 @@ class storyController extends Controller
     {
         $idTruyen = $_POST['idTruyen'];
         echo $idTruyen;
-        try{
-        Manager::beginTransaction();
-        Chapter::where('truyen_id',$idTruyen)->delete();
-        $img_path = Book::getBook($idTruyen)->truyen_img;
-        unlink($img_path);
-        Book::where('truyen_id', $idTruyen)->delete();
-        Manager::commit();
-    }
-    catch (PDOException $ex){
-        Manager::rollBack();
-    }
+        try {
+            Manager::beginTransaction();
+            Chapter::where('truyen_id', $idTruyen)->delete();
+            Favorite::where('truyen_id', $idTruyen)->delete();
+            Comment::where('truyen_id', $idTruyen)->delete();
+            Report::where('truyen_id', $idTruyen)->delete();
+            $img_path = Book::getBook($idTruyen)->truyen_img;
+            unlink($img_path);
+            Book::where('truyen_id', $idTruyen)->delete();
+            Manager::commit();
+        } catch (PDOException $ex) {
+            Manager::rollBack();
+        }
         redirect('/myStory', []);
     }
 
     public function addChapter()
     {
-        $idTruyen = $_POST['idTruyen']?? $_SESSION['truyen_id'];
+        $idTruyen = $_POST['idTruyen'] ?? $_SESSION['truyen_id'];
         $this->sendPage('chapter/addChapter', ['truyen_id' => $idTruyen]);
     }
 
@@ -146,9 +151,14 @@ class storyController extends Controller
 
     public function showChapter()
     {
+
         $idTruyen = $_GET['truyen'];
         $idChuong = $_GET['chuong'];
-        $this->sendPage('chapter/showChapter', ['truyen_id'=>$idTruyen, 'chuong_id'=>$idChuong]);
+        $luotxem = Chapter::all()->where('chuong_id', $idChuong)->first()->luotxem;
+        Chapter::where('truyen_id', $idTruyen)->where('chuong_id', $idChuong)->update([
+            'luotxem' => $luotxem + 1
+        ]);
+        $this->sendPage('chapter/showChapter', ['truyen_id' => $idTruyen, 'chuong_id' => $idChuong]);
     }
 
     public function deleteChapter()

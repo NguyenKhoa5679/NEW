@@ -103,7 +103,8 @@
                                              alt="">
                                         <div class="card-body">
                                             <h4 class="card-text ">
-                                                <div class="text-truncate" style="max-width:90%">Dưới những dặm mưa sa</div>
+                                                <div class="text-truncate" style="max-width:90%">Dưới những dặm mưa sa
+                                                </div>
                                                 <span>Nam Ly</span>
                                             </h4>
                                         </div>

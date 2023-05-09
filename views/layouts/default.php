@@ -32,6 +32,9 @@ $theLoaiList = TheLoai::all();
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
+        .bg-gray{
+            background-color: #f8f9fa;
+        }
         a {
             text-decoration: none;
             color: #000;
@@ -103,7 +106,7 @@ $theLoaiList = TheLoai::all();
     <?= $this->section("page_specific_css") ?>
 </head>
 
-<body>
+<body class="bg-gray">
 
 <div class="container fixed-top bg-light px-5">
     <!-- <div class="nav-border"></div> -->
@@ -195,11 +198,11 @@ $theLoaiList = TheLoai::all();
                                             <a href="/myStory">Truyện của tôi</a>
                                         </li>
                                     <?php endif ?>
-                                                                        <?php if (App\SessionGuard::isReader() or App\SessionGuard::isAuthor()): ?>
-                                    <li>
-                                        <a href="/myFavorite">Danh sách yêu thích</a>
-                                    </li>
-                                                                        <?php endif ?>
+                                    <?php if (App\SessionGuard::isReader() or App\SessionGuard::isAuthor()): ?>
+                                        <li>
+                                            <a href="/myFavorite">Danh sách yêu thích</a>
+                                        </li>
+                                    <?php endif ?>
 
                                     <li>
                                         <a href="/logout" onclick="event.preventDefault();

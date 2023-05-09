@@ -29,13 +29,13 @@ $book = Book::getBook($chapter->truyen_id);
                         <form class="" action="/handleEditChapter" method="POST">
                             <div class="m-1 row border-bottom w-50 m-auto">
                                 <input type="text" class="fc-custom text-center border-0 rounded-0 fw-bold"
-                                       name="TieuDe" id="" value="<?=$chapter->chuong_ten?>"
+                                       name="TieuDe" id="" value="<?= $chapter->chuong_ten ?>"
                                 >
                             </div>
                             <div class="container my-3 mx-5 row">
                                <textarea class="fc-custom border-0" placeholder="Nhập nội dung"
                                          id="floatingTextarea2" name="noiDung"
-                                         style="min-height: 500px; height: auto"><?=$chapter->chuong_noidung?></textarea>
+                                         style="min-height: 500px; height: auto"><?= $chapter->chuong_noidung ?></textarea>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input hidden="hidden" name="idChuong" value="<?= $this->e($chuong_id) ?>">

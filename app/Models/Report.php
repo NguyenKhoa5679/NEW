@@ -8,11 +8,12 @@ class Report extends Model
 {
     protected $table = 'baocao';
     protected $fillable = [
-        'idbaocao', 'truyen_id', 'user_id', 'LyDo'
+        'idbaocao', 'truyen_id', 'user_id', 'LyDo', 'tinhtrang'
     ];
 
-    public static function getReportOfStory($idTruyen){
-        return self::all()->where('truyen_id' , $idTruyen);
+    public static function getReportOfStory($idTruyen)
+    {
+        return self::all()->where('truyen_id', $idTruyen);
     }
 
 

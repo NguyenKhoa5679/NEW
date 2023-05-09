@@ -13,11 +13,11 @@ use Illuminate\Database\Capsule\Manager;
 $manager = new Manager();
 
 $manager->addConnection([
-	'driver'    => 'mysql',
-	'host'      => $_ENV['DB_HOST'],
-	'database'  => $_ENV['DB_NAME'],
-	'username'  => $_ENV['DB_USER'],
-	'password'  => $_ENV['DB_PASS'],
+    'driver' => 'mysql',
+    'host' => $_ENV['DB_HOST'],
+    'database' => $_ENV['DB_NAME'],
+    'username' => $_ENV['DB_USER'],
+    'password' => $_ENV['DB_PASS'],
 ]);
 
 $manager->setAsGlobal();

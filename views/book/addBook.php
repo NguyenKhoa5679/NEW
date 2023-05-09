@@ -14,69 +14,70 @@
                 </h4>
 
 
-                    <div class="container shadow rounded-3 m-3 p-4">
-                        <form class="" action="" method="POST" enctype="multipart/form-data">
-                            <div class="mx-1 mb-4 row">
-                                <label class="form-label h3 fw-bold">
-                                    Tiêu đề
-                                </label>
-                                <div class="">
-                                    <input type="text" class="form-control" name="TenTruyen" id="" required>
-                                </div>
+                <div class="container shadow rounded-3 m-3 p-4">
+                    <form class="" action="" method="POST" enctype="multipart/form-data">
+                        <div class="mx-1 mb-4 row">
+                            <label class="form-label h3 fw-bold">
+                                Tiêu đề
+                            </label>
+                            <div class="">
+                                <input type="text" class="form-control" name="TenTruyen" id="" required>
                             </div>
-                            <div class="mx-1 mb-4 row">
-                                <label for="themanh" class="form-label h3 fw-bold">
-                                    Thêm ảnh
-                                </label>
-                                <div class="">
-                                    <input class="form-control" type="file" id="Anh" name="Anh">
-                                </div>
+                        </div>
+                        <div class="mx-1 mb-4 row">
+                            <label for="themanh" class="form-label h3 fw-bold">
+                                Thêm ảnh
+                            </label>
+                            <div class="">
+                                <input class="form-control" type="file" id="Anh" name="Anh">
                             </div>
-                            <div class="mx-1 mb-4 row">
-                                <label class="form-label h3 fw-bold">
-                                    Thể loại
-                                </label>
-                                <div class="">
-                                    <select class="theLoai form-select" name="theLoai[]" multiple="multiple">
-                                        <?php $theloaiList = \App\Models\TheLoai::getListTheLoai();
-                                        foreach ($theloaiList as &$theloai) {
-                                            ?>
-                                            <option
-                                                value="<?= $theloai->truyen_theloai ?>"> <?= $theloai->ten_theloai ?> </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="mx-1 mb-4 row">
+                            <label class="form-label h3 fw-bold">
+                                Thể loại
+                            </label>
+                            <div class="">
+                                <select class="theLoai form-select" name="theLoai[]" multiple="multiple">
+                                    <?php $theloaiList = \App\Models\TheLoai::getListTheLoai();
+                                    foreach ($theloaiList as &$theloai) {
+                                        ?>
+                                        <option
+                                            value="<?= $theloai->truyen_theloai ?>"> <?= $theloai->ten_theloai ?> </option>
+                                    <?php } ?>
+                                </select>
                             </div>
-                            <div class="mx-1 mb-4 row">
-                                <label for="formFile" class="form-label h3 fw-bold">
-                                    Tác giả
-                                </label>
-                                <div class=""">
-                                    <input class="form-control" type="text" id="tacgia" name="TacGia">
-                                </div>
+                        </div>
+                        <div class="mx-1 mb-4 row">
+                            <label for="formFile" class="form-label h3 fw-bold">
+                                Tác giả
+                            </label>
+                            <div class=""
+                            ">
+                            <input class="form-control" type="text" id="tacgia" name="TacGia">
+                        </div>
 
-                            </div>
-                            <div class="mx-1 mb-4 row">
-                                <label class="form-label h3 fw-bold">
-                                    Mô tả
-                                </label>
-                                <div class="form-floating">
+                </div>
+                <div class="mx-1 mb-4 row">
+                    <label class="form-label h3 fw-bold">
+                        Mô tả
+                    </label>
+                    <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
                                               id="moTa"
                                               style="height: 100px" name="moTa"></textarea>
-<!--                                    <label for="moTa" class="h4 form-label mx-2"> Nhập mô tả</label>-->
-                                </div>
-
-                            </div>
-                            <div class="btn-custom-wrap ms-auto me-3" style="height: 47.61px;">
-                                <button type="submit" class="btn btn-custom p-1">Thêm truyện</button>
-                            </div>
-
-                        </form>
+                        <!--                                    <label for="moTa" class="h4 form-label mx-2"> Nhập mô tả</label>-->
                     </div>
-                </h4>
 
+                </div>
+                <div class="btn-custom-wrap ms-auto me-3" style="height: 47.61px;">
+                    <button type="submit" class="btn btn-custom p-1">Thêm truyện</button>
+                </div>
+
+                </form>
             </div>
+            </h4>
+
+        </div>
         </div>
     </main>
 

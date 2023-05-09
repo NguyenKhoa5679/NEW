@@ -13,28 +13,30 @@
 font family : Raleway
 
 ## check
+
 - Dang ky/ Dang nhap
 - tac gia
-- 
+-
+
 ## Phan quyen
+
 - nguoi dung
-  - Doc
-  - Them vao danh sach yeu thich
-  - Bao cao tac pham
-  - comment
-  - like
+    - Doc(check)
+    - Them vao danh sach yeu thich (check)
+    - Bao cao tac pham (check)
+    - comment (check)
 - tac gia
-  - Them truyen (check)
-  - them chuong (check)
-  - xoa truyen (check)
-  - edit truyen (check)
-  - edit chuogn (check)
-  - xoa chuong (check)
-  - gan nhan (check)
-  - 
+    - Them truyen (check)
+    - them chuong (check)
+    - xoa truyen (check)
+    - edit truyen (check)
+    - edit chuogn (check)
+    - xoa chuong (check)
+    - gan nhan (check)
+    -
 - admin
-  - xoa truyen
-  - xac nhan
-  - Quan ly user
-  - Quan ly comment/ baocao
+    - xoa truyen
+    - xac nhan
+    - Quan ly user
+    - Quan ly comment/ baocao
 

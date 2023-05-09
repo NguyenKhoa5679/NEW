@@ -1,16 +1,18 @@
 <?php
 
+use Bramus\Router\Router;
+
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 require __DIR__ . '/../bootstrap.php';
 
-define('APPNAME', 'Kei Story'); 
+define('APPNAME', 'Kei Story');
 
 session_start();
 
-$router = new \Bramus\Router\Router();
+$router = new Router();
 
 // ------------- Auth routes ----------
 $router->post('/logout', '\App\Controllers\Auth\LoginController@logout');
@@ -19,6 +21,13 @@ $router->post('/register', '\\App\Controllers\Auth\RegisterController@register')
 $router->get('/login', '\App\Controllers\Auth\LoginController@showLoginForm');
 $router->post('/login', '\App\Controllers\Auth\LoginController@login');
 
+// -------------- Admin routes ------------------
+$router->get('/admin', '\App\Controllers\Auth\AdminController@admin');
+$router->get('/admin/Users', '\App\Controllers\Auth\AdminController@adminUsers');
+$router->get('/admin/Books', '\App\Controllers\Auth\AdminController@adminBooks');
+$router->get('/admin/Categories', '\App\Controllers\Auth\AdminController@adminCategories');
+$router->get('/admin/Authors', '\App\Controllers\Auth\AdminController@adminAuthors');
+$router->get('/admin/Notification', '\App\Controllers\Auth\AdminController@adminNotification');
 
 // --------- Book --------
 $router->get('/addBook', '\App\Controllers\Story\storyController@addStory');
@@ -46,11 +55,22 @@ $router->get('/showChapter', '\App\Controllers\Story\storyController@showChapter
 // ----------- Comment --------------
 $router->post('/newComment', '\App\Controllers\Auth\UserController@newComment');
 $router->post('/editComment', '\App\Controllers\Auth\UserController@editComment');
+$router->post('/deleteComment', '\App\Controllers\Auth\UserController@deleteComment');
+
+// ----------- Favorite -------------
+$router->post('/addFavorite', '\App\Controllers\Auth\UserController@addFavorite');
+$router->post('/deleteFavorite', '\App\Controllers\Auth\UserController@deleteFavorite');
+
+// ----------- Report --------------
+$router->post('/addReport', '\App\Controllers\Auth\UserController@addReport');
+
+// ----------- Require ----------
+$router->post('/RequiredAuthor', '\App\Controllers\Auth\UserController@RequiredAuthor');
+
 
 // --------------- general ----------
 $router->get('/', '\App\Controllers\homeController@index');
 $router->get('/home', '\App\Controllers\homeController@index');
-$router->get('/admin', '\App\Controllers\Auth\UserController@admin');
 $router->get('/profile', '\App\Controllers\Auth\UserController@profile');
 $router->post('/profile', '\App\Controllers\Auth\UserController@doiMK');
 $router->get('/myFavorite', '\App\Controllers\Auth\UserController@myFavorite');

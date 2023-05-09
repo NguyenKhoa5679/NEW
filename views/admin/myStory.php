@@ -26,8 +26,8 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
 
         <div class="container shadow-lg p-3 rounded-3 mb-5">
             <?php foreach ($books as $key => $book) { ?>
-                <div class="row py-2 mx-1 border-bottom border-black">
-<!--                    Hien thi thong tin -->
+                <div class="row py-3 mx-1 border-bottom border-black">
+                    <!--                    Hien thi thong tin -->
                     <a href="/editBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>" class="row col">
                         <div class="col-sm-3 col-lg-2 mx-2">
                             <img class="card-img-top w-100" style="max-width: 160px; object-fit: cover;"
@@ -38,7 +38,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                             <h4 class="card-text ">
                                 <div class="text-truncate" style="max-width:90%"><?= $book->truyen_ten ?></div>
                                 <span class="TacGia"><i
-                                        class="fa fa-light fa-pen fa-xs fa-custom"></i> <?= $book->TacGia ?></span>
+                                        class="fa fa-light fa-pen fa-custom"></i> <?= $book->TacGia ?></span>
                             </h4>
                             <h5>
                                 <?php $theLoaiList = explode(", ", $book->truyen_theloai);
@@ -50,18 +50,38 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                 echo join(', ', $TruyenTheLoai);
                                 ?>
                             </h5>
-                            <div class="">
 
-                                <div class=""><i class="fa fa-regular fa-eye fa-custom"></i>
-                                    <!--                                                        //TODO:: THÊM LƯỢT XEM-->
+                            <div class="row fs-5 mt-5">
+                                <div class="col">
+                                    <i class="fa fa-regular fa-eye fa-custom text-gradient"></i> Lượt xem
+                                    <?php
+                                    $luotxem = \App\Models\Chapter::all()->where('truyen_id', $book->truyen_id)->sum('luotxem');
+                                    echo $luotxem;
+                                    ?>
+                                </div>
+                                <div class="col">
+                                    <i class="fa fa-thin fa-star fa-custom"></i> Đánh giá
+                                    <?php
+                                    $danhgia = \App\Models\Comment::all()->where('truyen_id', $book->truyen_id)->avg('rating') ?? 0;
+                                    echo $danhgia;
+                                    ?>
+
+
+                                </div>
+                                <div class="col">
+                                    <i class="fa fa-light fa-list fa-custom"></i> Chương
+                                    <?php
+                                    $soChuong = \App\Models\Chapter::all()->where('truyen_id', $book->truyen_id)->count();
+                                    echo $soChuong;
+                                    ?>
                                 </div>
                             </div>
                         </div>
                     </a>
 
-<!--                    tiep tuc viet / Xoa -->
+                    <!--                    tiep tuc viet / Xoa -->
                     <div class="col-sm-2">
-<!--                        Tiep tuc -->
+                        <!--                        Tiep tuc -->
                         <div class="row mt-2 ms-auto dropdown bg-custom rounded-2 d-flex justify-content-end"
                              style="width: fit-content">
                             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -80,7 +100,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                                 <input name="idChuong" value="<?= $chuong->chuong_id ?>"
                                                        hidden="hidden">
                                                 <button class="btn fs-5 text-truncate"
-                                                        type="submit"><?= "Chương " . $chuong->chuong_so .": " . $chuong->chuong_ten ?></button>
+                                                        type="submit"><?= "Chương " . $chuong->chuong_so . ": " . $chuong->chuong_ten ?></button>
                                             </form>
                                         </li>
                                     <?php } ?>
@@ -98,7 +118,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                 </li>
                             </ul>
                         </div>
-<!--                        Xoa -->
+                        <!--                        Xoa -->
                         <div class="row text-end mt-3">
                             <form action="/deleteBook" method="post">
                                 <input type="text" value="<?= $book->truyen_id ?>"

@@ -15,7 +15,8 @@ $chuong = Chapter::getChapter($this->e($chuong_id));
             <div class="text-center">
                 <section>
                     <div class="title">
-                        <h1><?= $truyen->truyen_ten ?></h1>
+                        <a href="/showBook?<?= $truyen->truyen_ten ?>&id=<?= $truyen->truyen_id ?>">
+                            <h1><?= $truyen->truyen_ten ?></h1></a>
                     </div>
                 </section>
             </div>
@@ -63,7 +64,7 @@ $chuong = Chapter::getChapter($this->e($chuong_id));
             </div>
         </div>
         <div class="container content">
-                <?= nl2br($chuong->chuong_noidung)?>
+            <?= nl2br($chuong->chuong_noidung) ?>
         </div>
 
         <div class="container m-auto gap-1">
@@ -140,10 +141,12 @@ $chuong = Chapter::getChapter($this->e($chuong_id));
             color: white;
             width: fit-content;
         }
-        .btn-custom:hover{
+
+        .btn-custom:hover {
             background: #5E308C;
         }
-        .content{
+
+        .content {
             font-size: 1.6rem;
         }
     </style>

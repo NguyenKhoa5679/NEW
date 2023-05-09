@@ -19,9 +19,8 @@ class Comment extends Model
     {
 //        return self::all()->where('truyen_id', $idTruyen);
 //        return Manager::table('binhluan')->orderBy('updated_at', 'asc')->where('truyen_id', $idTruyen);
-        return Manager::select('select * from binhluan where truyen_id = :truyen_id order by updated_at desc ', ['truyen_id'=>$idTruyen]);
+        return Manager::select('select * from binhluan where truyen_id = :truyen_id order by updated_at desc ', ['truyen_id' => $idTruyen]);
     }
-
 
 
 }

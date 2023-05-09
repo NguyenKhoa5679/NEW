@@ -1,6 +1,7 @@
 <?php use App\Models\Book;
 use App\Models\Chapter;
 use App\Models\Comment;
+use App\Models\Favorite;
 use App\Models\TheLoai;
 use App\Models\User;
 use App\SessionGuard;
@@ -51,8 +52,8 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
                                 <div class="row">
                                     Thể loại: <?= join(', ', $TruyenTheLoai) ?>
                                 </div>
-                                <div class="row">
-                                    Tình trạng: <?= $BookInfo->truyen_tinhtrang ?>
+                                <div class="row badge rounded-pill text-bg-light">
+                                    <?= $BookInfo->truyen_tinhtrang ?>
                                 </div>
                             </div>
 
@@ -62,14 +63,41 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
                                 </blockquote>
                             </div>
                         </div>
+
+                        <?php
+                        if (SessionGuard::isUserLoggedIn()) {
+                            $favorite = Favorite::all()->where('truyen_id', $BookInfo->truyen_id)->where('user_id', SessionGuard::UserID())->first();
+                            if (is_null($favorite)) {
+                                ?>
+                                <form action="/addFavorite" method="post">
+                                    <input type="text" value="<?= $BookInfo->truyen_id ?>" hidden="hidden"
+                                           name="idTruyen">
+                                    <button class="btn button primary fw-bold" type="submit"
+                                            style="background: white;">
+                                        <i class="fa-regular fa-heart"></i> Thêm vào yêu thích
+                                    </button>
+                                </form>
+                            <?php } else {
+                                ?>
+                                <form action="/deleteFavorite" method="post">
+                                    <input type="text" value="<?= $BookInfo->truyen_id ?>" hidden="hidden"
+                                           name="idTruyen">
+                                    <button class="btn button primary fw-bold" type="submit"
+                                            style="background: white;">
+                                        <i class="fa-solid fa-heart"></i> Thêm vào yêu thích
+                                    </button>
+                                </form>
+
+                            <?php }
+                        } ?>
+
+
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- TODO: thêm vào danh sách yêu thích-->
-    <!-- TODO: Báo cáo truyện-->
-    <!-- TODO: thêm bình luận-->
 
 
     <div class="container-fluid  about-book mx-3  mt-3 mb-5 row">
@@ -95,89 +123,241 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
         </section>
 
         <section class="col-2 me-3">
+            <div class="container shadow rounded border mb-3">
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn button fw-bold"
+                        style="background: white;"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <i class="fa fa-regular fa-flag"></i> Báo cáo truyện này
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Báo cáo truyện</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/addReport" method="post" id="report">
+
+                                    <div class="accordion border-0" id="accordionExample">
+                                        <div class="accordion-item border-0 focus-ring-light">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button  focus-ring-light fs-4" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseOne" aria-expanded="false"
+                                                        aria-controls="collapseOne">
+                                                    Nội dung không phù hợp
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                                 data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="LyDo"
+                                                               id="flexRadioDefault1" value="Nội dung nhạy cảm">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            Nội dung nhạy cảm
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="LyDo"
+                                                               id="flexRadioDefault2" value="Thù địch, quấy rối">
+                                                        <label class="form-check-label" for="flexRadioDefault2">
+                                                            Thù địch, quấy rối
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="LyDo"
+                                                               id="flexRadioDefault3" value="Bạo Lực">
+                                                        <label class="form-check-label" for="flexRadioDefault3">
+                                                            Bạo Lực
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="LyDo"
+                                                               id="flexRadioDefault4" value="Spam">
+                                                        <label class="form-check-label" for="flexRadioDefault4">
+                                                            Spam
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="LyDo"
+                                                               id="flexRadioDefault5" value="Khác" checked>
+                                                        <label class="form-check-label" for="flexRadioDefault5">
+                                                            Khác
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item border-0 focus-ring-light">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed focus-ring-light fs-4"
+                                                        type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseTwo" aria-expanded="false"
+                                                        aria-controls="collapseTwo">
+                                                    Vi phạm bản quyền
+                                                </button>
+                                            </h2>
+                                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                                 data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="LyDo"
+                                                               id="flexRadioDefault6" value="Vi phạm bản quyền">
+                                                        <label class="form-check-label" for="flexRadioDefault6">
+                                                            Vi phạm bản quyền
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label class="form-label fs-4" for="NoiDung">Nội dung</label>
+                                    <input type="text" class="form-control fs-4" name="NoiDung" value="">
+                                    <input name="idTruyen" value="<?= $BookInfo->truyen_id ?>" hidden="hidden">
+
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" form="report" class="btn btn-primary">Báo cáo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <h2 class="about-book-info col">Bình Luận</h2>
             </div>
             <div class="border rounded shadow">
+                <?php
+                if (SessionGuard::isUserLoggedIn()) {
+                    ?>
+                    <form method="POST" action="/newComment" class="m-2">
+                        <input name="idTruyen" value="<?= $BookInfo->truyen_id ?>" hidden="hidden">
+                        <input type="text" name="noiDung" class="form-control" placeholder="Nhập bình luận">
+                        <input
+                            class="m-auto rating rating--nojs"
+                            max="5"
+                            step="1"
+                            type="range"
+                            value="5"
+                            name="rating"
+                        >
+                        <button type="submit" class="m-auto btn w-100 text-center fw-bold fs-5 bg-custom"
+                                style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
 
-                <form method="POST" action="/newComment" class="m-2">
-                    <input name="idTruyen" value="<?= $BookInfo->truyen_id ?>" hidden="hidden">
-                    <input type="text" name="noiDung" class="form-control" placeholder="Nhập bình luận">
-                    <input
-                        class="m-auto rating rating--nojs"
-                        max="5"
-                        step="1"
-                        type="range"
-                        value="5"
-                        name="rating"
-                    >
-                    <button type="submit" class="m-auto btn w-100 text-center fw-bold fs-5 bg-custom"
-                            style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
-
-                        <i class="fa-solid fa-plus fa-xs"></i> Thêm
-                    </button>
-                </form>
+                            <i class="fa-solid fa-plus fa-xs"></i> Thêm
+                        </button>
+                    </form>
+                <?php } ?>
 
             </div>
-            <div class="rounded shadow mt-3">
-                <?php foreach ($commentList as $comment) { ?>
-                    <?php
-                    $user = User::getUserbyIDUser($comment->user_id);
+
+            <?php foreach ($commentList as $comment) { ?>
+                <?php
+                $user = User::getUserbyIDUser($comment->user_id);
+                if (SessionGuard::isUserLoggedIn()) {
                     if (SessionGuard::isUser($comment->user_id)) {
                         ?>
-                        <div class="border-bottom m-1">
-                            <div class="p-2">
+                        <div class="rounded shadow mt-3">
+                            <div class="border-bottom m-1">
+                                <div class="p-2">
 
-                                <div class="fw-bold fst-italic">
-                                    <?= $user->fullname ?>
-                                </div>
-                                <form action="/editComment" method="post" id="editComment<?= $comment->idbinhluan ?>">
-                                    <input type="text" name="idTruyen" value="<?= $comment->truyen_id ?>"
-                                           hidden="hidden">
-                                    <input type="text" name="idbinhluan" value="<?= $comment->idbinhluan ?>" hidden="hidden">
-                                    <input
-                                        class="rating rating--nojs custom-rating"
-                                        max="5"
-                                        step="1"
-                                        type="range"
-                                        value="<?= $comment->rating ?>"
-                                        name="rating"
-                                    >
-                                    <input class="form-control" type="text" name="noiDung" value="<?= $comment->noiDung ?>">
-
-                                </form>
-
-                                <div class="row">
-                                    <button type="submit" form="editComment<?= $comment->idbinhluan ?>"
-                                            class=" col m-auto btn w-100 text-center fw-bold fs-5 bg-custom"
-                                            style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
-                                        Sửa
-                                    </button>
-
-                                    <form action="/deleteComment" method="post" class="col">
-                                        <input type="text" name="idTruyen" value="<?= $comment->idbinhluan ?>"
+                                    <div class="fw-bold fst-italic">
+                                        <?= $user->fullname ?>
+                                    </div>
+                                    <form action="/editComment" method="post"
+                                          id="editComment<?= $comment->idbinhluan ?>">
+                                        <input type="text" name="idTruyen" value="<?= $comment->truyen_id ?>"
                                                hidden="hidden">
-                                        <input name="idbinhluan" value="<?= $comment->idbinhluan ?>" hidden="hidden">
-                                        <button type="submit"
-                                                class="m-auto btn w-100 text-center fw-bold fs-5 bg-custom"
-                                                style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
-                                            Xóa
-                                        </button>
+                                        <input type="text" name="idbinhluan" value="<?= $comment->idbinhluan ?>"
+                                               hidden="hidden">
+                                        <input
+                                            class="rating rating--nojs custom-rating"
+                                            max="5"
+                                            step="1"
+                                            type="range"
+                                            value="<?= $comment->rating ?>"
+                                            name="rating"
+                                        >
+                                        <input class="form-control" type="text" name="noiDung"
+                                               value="<?= $comment->noiDung ?>">
+
                                     </form>
+
+                                    <div class="row">
+                                        <button type="submit" form="editComment<?= $comment->idbinhluan ?>"
+                                                class=" col m-auto btn w-100 text-center fw-bold fs-5 bg-custom"
+                                                style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
+                                            Sửa
+                                        </button>
+
+                                        <form action="/deleteComment" method="post" class="col">
+                                            <input name="idTruyen" value="<?= $comment->truyen_id ?>" hidden="hidden">
+                                            <input name="idbinhluan" value="<?= $comment->idbinhluan ?>"
+                                                   hidden="hidden">
+                                            <button type="submit"
+                                                    class="m-auto btn w-100 text-center fw-bold fs-5 bg-custom"
+                                                    style="-webkit-background-clip: text; -webkit-text-fill-color: transparent; width: fit-content">
+                                                Xóa
+                                            </button>
+                                        </form>
+                                    </div>
+
                                 </div>
 
                             </div>
-                            <!--                        TODO: Xem bình luận-->
                         </div>
                     <?php }
-                } ?>
-            </div>
+                }
+            } ?>
+
+
+
+            <?php foreach ($commentList as $comment) { ?>
+                <?php
+                $user = User::getUserbyIDUser($comment->user_id);
+                if (SessionGuard::isUserLoggedIn()) {
+                    if (!SessionGuard::isUser($comment->user_id)) {
+                        ?>
+                        <div class="rounded shadow mt-3">
+                            <div class="border-bottom m-1">
+                                <div class="p-2">
+                                    <div class="fw-bold fst-italic">
+                                        <?= $user->fullname ?><input
+                                            class="rating rating--nojs custom-rating"
+                                            max="5"
+                                            step="1"
+                                            type="range"
+                                            value="<?= $comment->rating ?>"
+                                            name="rating"
+                                            disabled
+                                        >
+                                    </div>
+                                    <p><?= $comment->noiDung ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                }
+            } ?>
+
 
             <div class="rounded shadow mt-3">
                 <?php foreach ($commentList as $comment) { ?>
                     <?php
                     $user = User::getUserbyIDUser($comment->user_id);
-                    if (!SessionGuard::isUser($comment->user_id)) {
+                    if (!SessionGuard::isUserLoggedIn()) {
                         ?>
                         <div class="border-bottom m-1">
                             <div class="p-2">
@@ -195,7 +375,6 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
                                 </div>
                                 <p><?= $comment->noiDung ?></p>
                             </div>
-                            <!--                        TODO: Xem bình luận-->
                         </div>
                     <?php }
                 } ?>
