@@ -21,6 +21,14 @@ $theLoaiList = TheLoai::all();
         <?= $this->e($title) ?>
     </title>
 
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"/>
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
@@ -33,14 +41,13 @@ $theLoaiList = TheLoai::all();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css"
-          integrity="sha512-Z0kTB03S7BU+JFU0nw9mjSBcRnZm2Bvm0tzOX9/OuOuz01XQfOpa0w/N9u6Jf2f1OAdegdIPWZ9nIZZ+keEvBw=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
 
     <style>
-        .bg-gray{
+        .bg-gray {
             background-color: #f8f9fa;
         }
+
         a {
             text-decoration: none;
             color: #000;
@@ -118,42 +125,79 @@ $theLoaiList = TheLoai::all();
 
         <div class="row m-2">
             <aside class="col-2 mx-2 overflow">
-                <div class="container m-3 nav">
-                    <a href="/home" class="navbar-branch">
+
+                <a href="/home" class="navbar-branch">
+                    <div class="container m-3 nav">
+
                         <img src="/img/logo_nav.png" style="width: 40%;"/>
-                    </a>
-                </div>
+
+                    </div>
+                </a>
                 <div class="nav-border w-100 mb-2" style="height: 1px"></div>
 
-                <div class="shadow rounded-2 p-3 mt-4 hover">
-                    <a href="/admin/Users">
-                        <i class="fa fa-solid fa-users fa-custom"></i> Quản lý người dùng
-                    </a>
-                </div>
+                <a href="/home">
+                    <div class="shadow rounded-2 p-3 mt-4 hover">
 
-                <div class="shadow rounded-2 p-3 mt-4 hover">
-                    <a href="/admin/Books">
+                        <i class="fa fa-custom fa-solid fa-house "></i> Trang chủ
+
+                    </div>
+                </a>
+
+                <a href="/admin/Users">
+                    <div class="shadow rounded-2 p-3 mt-4 hover">
+
+                        <i class="fa fa-solid fa-users fa-custom "></i> Quản lý người dùng
+
+                    </div>
+                </a>
+
+                <a href="/admin/Books">
+                    <div class="shadow rounded-2 p-3 mt-4 hover">
+
                         <i class="fa fa-custom fa-solid fa-book"></i> Quản lý truyện
-                    </a>
-                </div>
 
-                <div class="shadow rounded-2 p-3 mt-4 hover">
-                    <a href="/admin/Categories">
+                    </div>
+                </a>
+
+                <a href="/admin/Categories">
+                    <div class="shadow rounded-2 p-3 mt-4 hover">
+
                         <i class="fa fa-custom fa-duotone fa-list"></i> Quản lý danh mục thể loại
-                    </a>
-                </div>
 
-                <div class="shadow rounded-2 p-3 mt-4 hover">
-                    <a href="/admin/Notification">
+                    </div>
+                </a>
+
+                <a href="/admin/Notification">
+                    <div class="shadow rounded-2 p-3 mt-4 hover">
+
                         <i class="fa fa-custom fa-regular fa-flag"></i> Báo cáo truyện
-                    </a>
-                </div>
 
-                <div class="shadow rounded-2 p-3 mt-4 hover">
-                    <a href="/admin/Authors">
-                        <i class="fa fa-custom fa-regular fa-flag"></i> Yêu cầu quyền tác giả
-                    </a>
-                </div>
+                    </div>
+                </a>
+
+                <a href="/admin/Authors">
+                    <div class="shadow rounded-2 p-3 mt-4 hover">
+
+                        <i class="fa fa-custom fa-solid fa-hand"></i> Yêu cầu quyền tác giả
+
+                    </div>
+                </a>
+
+                <a href="/logout">
+                    <div class="shadow rounded-2 p-3 mt-4 hover">
+
+                        <a href="/logout" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                            <i class="fa fa-custom fa-solid fa-right-from-bracket"></i> Đăng xuất
+                        </a>
+
+                        <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                        </form>
+
+
+
+                    </div>
+                </a>
             </aside>
 
             <div class="col mx-2">
@@ -177,16 +221,34 @@ $theLoaiList = TheLoai::all();
 </footer>
 
 <!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 <link rel='stylesheet' href='https://cdn.rawgit.com/daneden/animate.css/v3.1.0/animate.min.css'>
 <script src='https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link
+    href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/af-2.5.3/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/cr-1.6.2/date-1.4.1/fc-4.2.2/fh-3.3.2/kt-2.9.0/r-2.4.1/rg-1.3.1/rr-1.3.3/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.css"
+    rel="stylesheet"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script
+    src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/af-2.5.3/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/cr-1.6.2/date-1.4.1/fc-4.2.2/fh-3.3.2/kt-2.9.0/r-2.4.1/rg-1.3.1/rr-1.3.3/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.js"></script>
+<!--<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>-->
 
 <script>
     $(document).ready(function () {
         new WOW().init();
     }
+
+</script>
+<script>
+    $(document).ready(function () {
+        $('#table1').DataTable();
+    });
 </script>
 
 <?= $this->section("page_specific_js") ?>

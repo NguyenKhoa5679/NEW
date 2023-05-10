@@ -45,7 +45,7 @@ class AdminController extends Controller
         $this->sendPage('admin/ad_Categories', []);
     }
 
-    public function adminAuthor()
+    public function adminAuthors()
     {
         $this->sendPage('admin/ad_Authors', []);
     }

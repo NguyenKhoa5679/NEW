@@ -207,7 +207,7 @@ $theLoaiList = TheLoai::all();
                                     <li>
                                         <a href="/logout" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Đăng xuất
                                         </a>
 
                                         <form id="logout-form" action="/logout" method="POST" style="display: none;">

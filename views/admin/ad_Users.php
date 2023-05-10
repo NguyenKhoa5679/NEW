@@ -4,10 +4,44 @@
 
 
     <div class="p-3 fs-3 fw-bold">
-        <!--                        <i class="fa fa-solid fa-users fa-custom"></i> -->
         Quản lý người dùng
     </div>
-    <!--                <div class="nav-border w-50" style="height: 1px;"> </div>-->
+
+    <div>
+        <table class="table table-striped" id="table1">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên người dùng</th>
+                <th>Tài khoản</th>
+                <th>Mật khẩu</th>
+                <th>Email</th>
+                <th>123</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td >1</td>
+                <td>Nguyeen Khoa</td>
+                <td>nguyenkhoa</td>
+                <td>123456</td>
+                <td>Nguyen Khoa</td>
+
+                <td><a href="">Sửa xóa</a></td>
+            </tr>
+            <tr>
+                <td >1</td>
+                <td>Nguyeen Khoa</td>
+                <td>2</td>
+                <td>123456</td>
+                <td>Nguyen Khoa</td>
+                <td><a href="">Sửa xóa</a></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
 
 
 <?php $this->stop() ?>
@@ -17,5 +51,11 @@
 <?php $this->stop() ?>
 
 <?php $this->start("page_specific_js") ?>
+
+
+
+
+
+
 
 <?php $this->stop() ?>
