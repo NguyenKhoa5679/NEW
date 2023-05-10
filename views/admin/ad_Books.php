@@ -22,7 +22,7 @@ $Books = \App\Models\Book::all();
             <th>Tình trạng</th>
             <th>Người đăng</th>
             <th>Ngày đăng</th>
-            <th>Tùy chỉnh</th>
+            <th>Xóa</th>
         </tr>
         </thead>
         <tbody>
@@ -38,9 +38,10 @@ $Books = \App\Models\Book::all();
                 <?=$count?>
             </td>
             <td class="text-truncate">
-                <?=$book->truyen_ten?>
+                <a href="/showBook?<?= $book->truyen_ten?>&id=<?=$book->truyen_id?>"><?=$book->truyen_ten?></a>
             </td>
             <td>
+
                 <?= $book->TacGia ?>
             </td>
             <td>
@@ -73,7 +74,14 @@ $Books = \App\Models\Book::all();
                 <?= date_format($date = $book->created_at,'Y -m -d') ?>
             </td>
 
-            <td><a href="">Sửa xóa</a></td>
+            <td>
+                <form action="/deleteBookbyAdmin" method="post">
+                    <input value="<?= $book->truyen_id ?>" name="idTruyen" hidden>
+                    <button type="submit" class="btn">
+                        <i class="fa fa-custom fa-solid fa-xmark"></i>
+                    </button>
+                </form>
+            </td>
         </tr>
             <?php } ?>
 

@@ -29,6 +29,18 @@ $router->get('/admin/Categories', '\App\Controllers\Auth\AdminController@adminCa
 $router->get('/admin/Authors', '\App\Controllers\Auth\AdminController@adminAuthors');
 $router->get('/admin/Notification', '\App\Controllers\Auth\AdminController@adminNotification');
 
+$router->post('/deleteUser', '\App\Controllers\Auth\AdminController@deleteUser');
+
+$router->post('/updatePermission', 'App\Controllers\Auth\AdminController@updatePermission');
+$router->post('/deniedPermission', 'App\Controllers\Auth\AdminController@deniedPermission');
+
+$router->post('/handleReport', '\App\Controllers\Auth\AdminController@handleReport');
+$router->post('/deleteReport', '\App\Controllers\Auth\AdminController@deleteReport');
+$router->post('/deleteBookbyAdmin', '\App\Controllers\Auth\AdminController@deleteBookbyAdmin');
+
+$router->post('/addCategory', '\App\Controllers\Auth\AdminController@addCategory');
+$router->post('/editCategory', '\App\Controllers\Auth\AdminController@editCategory');
+
 // --------- Book --------
 $router->get('/addBook', '\App\Controllers\Story\storyController@addStory');
 $router->post('/addBook', '\App\Controllers\Story\storyController@createNewStory');

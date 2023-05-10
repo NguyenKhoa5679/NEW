@@ -1,5 +1,5 @@
 <?php $this->layout("layouts/default", ["title" => APPNAME]) ?>
-
+<!--TODO: render trang chủ-->
 <?php $this->start("page") ?>
 
     <main>

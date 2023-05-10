@@ -124,7 +124,7 @@ $theLoaiList = TheLoai::all();
     <div class="container-fluid">
 
         <div class="row m-2">
-            <aside class="col-2 mx-2 overflow">
+            <aside class="col-2 me-5 overflow">
 
                 <a href="/home" class="navbar-branch">
                     <div class="container m-3 nav">
@@ -200,7 +200,7 @@ $theLoaiList = TheLoai::all();
                 </a>
             </aside>
 
-            <div class="col mx-2">
+            <div class="col mx-2 shadow rounded-3 border" style="height: 95vh">
                 <?= $this->section("page") ?>
             </div>
         </div>

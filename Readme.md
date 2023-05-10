@@ -35,8 +35,12 @@ font family : Raleway
     - gan nhan (check)
     -
 - admin
-    - xoa truyen
-    - xac nhan
+    - xoa truyen (check)
+    - xac nhan quyền tác giả(check)
     - Quan ly user
-    - Quan ly comment/ baocao
+      - Xóa user (check)
+    - Quan ly bao cao (check)
+    - Danh mục thể loại
+      - thêm (check)
+      - chỉnh sửa (check)
 

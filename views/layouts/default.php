@@ -114,7 +114,7 @@ $theLoaiList = TheLoai::all();
         <div class="fixed-top bg-light">
             <!-- <div class="nav-border"></div> -->
             <nav class="navbar navbar-expand-lg  px-3">
-                <div class="container-fluid px-5 mx-5">
+                <div class="container-fluid px-5 mx-5" style="margin-right: 100px !important;">
                     <a href="/home" class="navbar-branch"
                        style="width: 12%; min-width: 70px; max-width: 120px; max-height: 70px;"><img
                             src="/img/logo_nav.png" style="width: 90%;"/></a>
@@ -166,7 +166,10 @@ $theLoaiList = TheLoai::all();
 
                 </div>
 
-                <div class="collapse navbar-collapse justify-content-end px-5 mx-5" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse justify-content-end pe-5 me-5"
+                     id="navbarNavAltMarkup"
+                     style="margin-right: 100px !important;"
+                >
                     <div class="navbar-nav">
                         <?php if (!App\SessionGuard::isUserLoggedIn()): ?>
                             <li class="nav-link"><a href="/login">Login</a></li>
@@ -181,33 +184,34 @@ $theLoaiList = TheLoai::all();
                                     <?php echo $_SESSION['fullname']; ?>
                                     <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu" role="menu" >
 
                                     <li>
-                                        <a href="/profile">Quản lý tài khoản</a>
+                                        <a href="/profile" class="dropdown-item"><i class="fa fa-custom fa-regular fa-user"></i> Quản lý tài khoản</a>
                                     </li>
 
                                     <?php if (App\SessionGuard::isAdmin()): ?>
                                         <li>
-                                            <a href="/admin">Quản trị</a>
+                                            <a href="/admin" class="dropdown-item"><i class="fa fa-custom fa-solid fa-gear"></i> Quản trị</a>
                                         </li>
                                     <?php endif ?>
 
                                     <?php if (App\SessionGuard::isAuthor()): ?>
                                         <li>
-                                            <a href="/myStory">Truyện của tôi</a>
+                                            <a href="/myStory" class="dropdown-item"><i class="fa fa-custom fa-regular fa-bookmark"></i> Truyện của tôi</a>
                                         </li>
                                     <?php endif ?>
                                     <?php if (App\SessionGuard::isReader() or App\SessionGuard::isAuthor()): ?>
                                         <li>
-                                            <a href="/myFavorite">Danh sách yêu thích</a>
+                                            <a href="/myFavorite" class="dropdown-item"><i class="fa fa-custom fa-regular fa-heart"></i> Danh sách yêu thích</a>
                                         </li>
                                     <?php endif ?>
+                                    <li><hr class="dropdown-divider"></li>
 
                                     <li>
-                                        <a href="/logout" onclick="event.preventDefault();
+                                        <a href="/logout" class="dropdown-item" onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                            Đăng xuất
+                                            <i class="fa fa-custom fa-solid fa-right-from-bracket"></i> Đăng xuất
                                         </a>
 
                                         <form id="logout-form" action="/logout" method="POST" style="display: none;">

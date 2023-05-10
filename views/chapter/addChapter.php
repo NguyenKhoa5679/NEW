@@ -67,6 +67,11 @@ $book = Book::all()->where('truyen_id', $this->e($truyen_id))->first();
             background: #F2F2F2 !important;
         }
     </style>
+    <style>
+        body{
+            background-color: #ffffff !important;
+        }
+    </style>
 <?php $this->stop() ?>
 
 <?php $this->start("page_specific_js") ?>

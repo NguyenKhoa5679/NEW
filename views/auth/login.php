@@ -47,4 +47,9 @@
 <?php $this->start("page_specific_css") ?>
 <link rel="stylesheet" href="/css/Res_Login.css">
 <link rel="stylesheet" href="/css/index.css">
+<style>
+    body{
+        background-color: #ffffff !important;
+    }
+</style>
 <?php $this->stop() ?>
