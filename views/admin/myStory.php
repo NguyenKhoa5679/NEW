@@ -63,7 +63,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                                     <i class="fa fa-thin fa-star fa-custom"></i> Đánh giá
                                     <?php
                                     $danhgia = \App\Models\Comment::all()->where('truyen_id', $book->truyen_id)->avg('rating') ?? 0;
-                                    echo $danhgia;
+                                    echo number_format($danhgia, 1, '. ');;
                                     ?>
 
 

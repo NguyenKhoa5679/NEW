@@ -17,11 +17,11 @@ $book = Book::all()->where('truyen_id', $this->e($truyen_id))->first();
                         <div class="nav-border" style="width: 15%; height:1px;"></div>
                     </div>
 
-                    <div>
-                        <h4 class="text-center">
-
-                        </h4>
-                    </div>
+<!--                    <div>-->
+<!--                        <h4 class="text-center">-->
+<!---->
+<!--                        </h4>-->
+<!--                    </div>-->
 
 
                     <div class="container p-5">

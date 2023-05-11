@@ -1,32 +1,29 @@
-<?php use App\Models\Book;
-use App\Models\Favorite;
-use App\Models\TheLoai;
-use App\SessionGuard;
+<?php use App\Models\theloai;
 
 $this->layout("layouts/default", ["title" => APPNAME]) ?>
 
-<?php
-$idUser = SessionGuard::UserID();
-$Favorite = Favorite::getFavoriteListofUser($idUser);
-?>
 <?php $this->start("page") ?>
+<?php
+$Search = $this->e($search);
+//$books = \App\Models\Book::all()->where("truyen_ten", 'LIKE', '%'.$Search.'%');
+$books = \Illuminate\Database\Capsule\Manager::select("SELECT * from truyen where truyen_ten like concat('%', :search, '%') or TacGia like concat('%', :search2, '%');", ['search'=>$Search, 'search2'=>$Search]);
+?>
 
     <main>
         <div class="container page-content">
             <div class="heading-section">
-                <h4>
-                    <em>Truyện Yêu thích</em>
-                    <div class="nav-border" style="width: 15%; height:1px;"></div>
+                <h4 class="row">
+                    <div class="col-9">
+                        <em>Tìm kiếm</em>
+                        <div class="nav-border" style="width: 15%; height:1px;"></div>
+                    </div>
                 </h4>
-
             </div>
-
-            <?php
-            foreach ($Favorite as $item) {
-                $book = Book::getBook($item->truyen_id);
-                ?>
-                <a href="/showBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>" class="row">
-                    <div class="row py-3 mx-1 border-bottom">
+        </div>
+        <div class="container p-3  rounded-3 shadow">
+            <?php foreach ($books as $key => $book) { ?>
+                <div class="row py-3 mx-1 border-bottom">
+                    <a href="/showBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>" class="row">
                         <div class="col-sm-3 col-lg-2 mx-2">
                             <img class="card-img-top w-100 img-book2"
                                  src="<?= $book->truyen_img ?>"
@@ -34,8 +31,7 @@ $Favorite = Favorite::getFavoriteListofUser($idUser);
                         </div>
                         <div class="col-sm-7">
                             <h4 class="card-text ">
-                                <div class="text-truncate" style="max-width:90%"><?= $book->truyen_ten ?>
-                                </div>
+                                <div class="text-truncate" style="max-width:90%"><?= $book->truyen_ten ?></div>
                                 <span class="TacGia"><i
                                         class="fa fa-custom fa-thin fa-pen"></i> <?= $book->TacGia ?></span>
                             </h4>
@@ -43,7 +39,7 @@ $Favorite = Favorite::getFavoriteListofUser($idUser);
                                 <?php $theLoaiList = explode(", ", $book->truyen_theloai);
                                 $TruyenTheLoai = [];
                                 foreach ($theLoaiList as &$value) {
-                                    $theLoai = TheLoai::getTheLoai(intval($value));
+                                    $theLoai = theloai::getTheLoai(intval($value));
                                     array_push($TruyenTheLoai, $theLoai->ten_theloai);
                                 }
                                 echo join(', ', $TruyenTheLoai);
@@ -61,7 +57,7 @@ $Favorite = Favorite::getFavoriteListofUser($idUser);
                                     <i class="fa fa-thin fa-star fa-custom"></i> Đánh giá
                                     <?php
                                     $danhgia = \App\Models\Comment::all()->where('truyen_id', $book->truyen_id)->avg('rating') ?? 0;
-                                    echo number_format($danhgia, 1, '. ');;
+                                    echo number_format($danhgia, 1, '. ');
                                     ?>
 
 
@@ -74,15 +70,12 @@ $Favorite = Favorite::getFavoriteListofUser($idUser);
                                     ?>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
-                </a>
-                <?php
-            }
-            ?>
-
+                    </a>
+                </div>
+            <?php } ?>
         </div>
+
     </main>
 
 <?php $this->stop() ?>

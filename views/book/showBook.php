@@ -105,7 +105,7 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
             <div class="row">
                 <h2 class="about-book-info col">Danh sách chương</h2>
             </div>
-            <div class="container border rounded shadow">
+            <div class="container border rounded shadow overflow-auto">
                 <?php foreach ($Chaters as $key => $Chapter) { ?>
                     <div class="container p-3 border-bottom row">
                         <a class="col" href=<?= "/showChapter?truyen={$this->e($id)}&chuong={$Chapter->chuong_id}" ?>>
@@ -123,14 +123,17 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
         </section>
 
         <section class="col-2 me-3">
+            <?php if (SessionGuard::isUserLoggedIn()) { ?>
             <div class="container shadow rounded border mb-3">
 
                 <!-- Button trigger modal -->
+
                 <button type="button" class="btn button fw-bold"
                         style="background: white;"
                         data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     <i class="fa fa-regular fa-flag"></i> Báo cáo truyện này
                 </button>
+
 
                 <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -234,11 +237,12 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
                     </div>
                 </div>
             </div>
+            <?php } ?>
 
             <div class="row">
                 <h2 class="about-book-info col">Bình Luận</h2>
             </div>
-            <div class="border rounded shadow">
+            <div class="border rounded shadow overflow-auto">
                 <?php
                 if (SessionGuard::isUserLoggedIn()) {
                     ?>

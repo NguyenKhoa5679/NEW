@@ -36,7 +36,7 @@ $yeuCauList =\Illuminate\Database\Capsule\Manager::select("SELECT * FROM quyenta
 
                 <td>
                     <form action="/updatePermission" method="post">
-                        <input value="<?= $user->user_id?>" name="idUser" hidden>
+                        <input value="<?= $user->user_id?>" name="idUser" hidden="hidden">
                         <button type="submit" class="btn">
                             <i class="fa fa-custom fa-solid fa-check"></i>
                         </button>
@@ -46,7 +46,7 @@ $yeuCauList =\Illuminate\Database\Capsule\Manager::select("SELECT * FROM quyenta
 
                 <td>
                     <form action="/deniedPermission" method="post">
-                        <input value="<?= $user->user_id?>" name="idUser" hidden>
+                        <input value="<?= $user->user_id?>" name="idUser" hidden="hidden">
                         <button type="submit" class="btn">
                             <i class="fa fa-custom fa-solid fa-xmark"></i>
                         </button>

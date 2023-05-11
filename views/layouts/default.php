@@ -32,9 +32,10 @@ $theLoaiList = TheLoai::all();
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
-        .bg-gray{
+        .bg-gray {
             background-color: #f8f9fa;
         }
+
         a {
             text-decoration: none;
             color: #000;
@@ -124,6 +125,7 @@ $theLoaiList = TheLoai::all();
                             aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
                     <div class="collapse navbar-collapse justify-content-start" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
                             <a class="nav-link" href="/home">Trang chủ</a>
@@ -161,67 +163,87 @@ $theLoaiList = TheLoai::all();
                                 </ul>
 
                             </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="nav-link justify-content-between" style="width: 30%">
+                        <form class="d-flex" role="search" id="search" action="/search" method="get">
+                            <input class="form-control me-2 fs-5 rounded-5" type="search" placeholder="Tìm kiếm"
+                                   aria-label="Search"
+                                    name="search"
+                            >
+                                <button class="btn" type="submit"> <i class="fa fa-custom fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="collapse navbar-collapse justify-content-end pe-5 me-5"
+                         id="navbarNavAltMarkup"
+                         style="margin-right: 100px !important;"
+                    >
+                        <div class="navbar-nav">
+                            <?php if (!App\SessionGuard::isUserLoggedIn()): ?>
+                                <li class="nav-link"><a href="/login">Login</a></li>
+                                <li></li>
+                                </li>
+                                <li class="nav-link"><a href="/register">Register</a></li>
+                            <?php else: ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button"
+                                       aria-expanded="false">
+                                        <?php //$this->e(App\SessionGuard::user->fullname) ?>
+                                        <?php echo $_SESSION['fullname']; ?>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+
+                                        <li>
+                                            <a href="/profile" class="dropdown-item"><i
+                                                    class="fa fa-custom fa-regular fa-user"></i> Quản lý tài khoản</a>
+                                        </li>
+
+                                        <?php if (App\SessionGuard::isAdmin()): ?>
+                                            <li>
+                                                <a href="/admin" class="dropdown-item"><i
+                                                        class="fa fa-custom fa-solid fa-gear"></i> Quản trị</a>
+                                            </li>
+                                        <?php endif ?>
+
+                                        <?php if (App\SessionGuard::isAuthor()): ?>
+                                            <li>
+                                                <a href="/myStory" class="dropdown-item"><i
+                                                        class="fa fa-custom fa-regular fa-bookmark"></i> Truyện của tôi</a>
+                                            </li>
+                                        <?php endif ?>
+                                        <?php if (App\SessionGuard::isReader() or App\SessionGuard::isAuthor()): ?>
+                                            <li>
+                                                <a href="/myFavorite" class="dropdown-item"><i
+                                                        class="fa fa-custom fa-regular fa-heart"></i> Danh sách yêu
+                                                    thích</a>
+                                            </li>
+                                        <?php endif ?>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+
+                                        <li>
+                                            <a href="/logout" class="dropdown-item" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                                <i class="fa fa-custom fa-solid fa-right-from-bracket"></i> Đăng xuất
+                                            </a>
+
+                                            <form id="logout-form" action="/logout" method="POST"
+                                                  style="display: none;">
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                            <?php endif ?>
                         </div>
                     </div>
-
-                </div>
-
-                <div class="collapse navbar-collapse justify-content-end pe-5 me-5"
-                     id="navbarNavAltMarkup"
-                     style="margin-right: 100px !important;"
-                >
-                    <div class="navbar-nav">
-                        <?php if (!App\SessionGuard::isUserLoggedIn()): ?>
-                            <li class="nav-link"><a href="/login">Login</a></li>
-                            <li></li>
-                            </li>
-                            <li class="nav-link"><a href="/register">Register</a></li>
-                        <?php else: ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button"
-                                   aria-expanded="false">
-                                    <?php //$this->e(App\SessionGuard::user->fullname) ?>
-                                    <?php echo $_SESSION['fullname']; ?>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu" >
-
-                                    <li>
-                                        <a href="/profile" class="dropdown-item"><i class="fa fa-custom fa-regular fa-user"></i> Quản lý tài khoản</a>
-                                    </li>
-
-                                    <?php if (App\SessionGuard::isAdmin()): ?>
-                                        <li>
-                                            <a href="/admin" class="dropdown-item"><i class="fa fa-custom fa-solid fa-gear"></i> Quản trị</a>
-                                        </li>
-                                    <?php endif ?>
-
-                                    <?php if (App\SessionGuard::isAuthor()): ?>
-                                        <li>
-                                            <a href="/myStory" class="dropdown-item"><i class="fa fa-custom fa-regular fa-bookmark"></i> Truyện của tôi</a>
-                                        </li>
-                                    <?php endif ?>
-                                    <?php if (App\SessionGuard::isReader() or App\SessionGuard::isAuthor()): ?>
-                                        <li>
-                                            <a href="/myFavorite" class="dropdown-item"><i class="fa fa-custom fa-regular fa-heart"></i> Danh sách yêu thích</a>
-                                        </li>
-                                    <?php endif ?>
-                                    <li><hr class="dropdown-divider"></li>
-
-                                    <li>
-                                        <a href="/logout" class="dropdown-item" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-custom fa-solid fa-right-from-bracket"></i> Đăng xuất
-                                        </a>
-
-                                        <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        <?php endif ?>
-                    </div>
-                </div>
 
             </nav>
 
@@ -232,16 +254,16 @@ $theLoaiList = TheLoai::all();
 
 <?= $this->section("page") ?>
 
-<footer class="footer">
-    <div class="container-fluid bg-light mt-5 shadow-lg fixed-bottom"> <!-- set background footer -->
-        <span>
-            <div class="text-center">
-               Copyright &copy By NguyenKhoa
-            </div>
-         </span>
-    </div>
-
-</footer>
+<!--<footer class="footer w-100" style="bottom: 0;  position: fixed;">-->
+<!--    <div class="container-fluid bg-light "> -->
+<!--        <span>-->
+<!--            <div class="text-center">-->
+<!--               Copyright &copy By NguyenKhoa-->
+<!--            </div>-->
+<!--         </span>-->
+<!--    </div>-->
+<!---->
+<!--</footer>-->
 
 <!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

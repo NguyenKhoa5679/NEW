@@ -188,5 +188,12 @@ class storyController extends Controller
         $this->sendPage('admin/theLoai', ['theLoai' => $_GET['TL']]);
     }
 
+    public function search(){
+        $search = $_GET['search'];
+        if ($search == '')
+            redirect('/home');
+        $this->sendPage('admin/search', ['search'=>$search]);
+    }
+
 
 }

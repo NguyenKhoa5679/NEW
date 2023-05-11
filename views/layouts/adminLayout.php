@@ -209,16 +209,16 @@ $theLoaiList = TheLoai::all();
 </main>
 
 
-<footer class="footer">
-    <div class="container-fluid bg-light mt-5 shadow-lg fixed-bottom"> <!-- set background footer -->
-        <span>
-            <div class="text-center">
-               Copyright &copy By NguyenKhoa
-            </div>
-         </span>
-    </div>
-
-</footer>
+<!--<footer class="footer">-->
+<!--    <div class="container-fluid bg-light mt-5 shadow-lg fixed-bottom"> <!-- set background footer -->-->
+<!--        <span>-->
+<!--            <div class="text-center">-->
+<!--               Copyright &copy By NguyenKhoa-->
+<!--            </div>-->
+<!--         </span>-->
+<!--    </div>-->
+<!---->
+<!--</footer>-->
 
 <!-- Scripts -->
 

@@ -147,7 +147,7 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
                     </button>
                 </form>
             </div>
-            <div class="container border rounded shadow">
+            <div class="container border rounded shadow overflow-auto">
                 <?php foreach ($Chaters as $key => $Chapter) { ?>
                     <div class="container p-3 border-bottom row">
                         <a class="col" href=<?= "/showChapter?truyen={$this->e($id)}&chuong={$Chapter->chuong_id}" ?>>
@@ -183,7 +183,7 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
             <div class="row">
                 <h2 class="about-book-info col">Bình Luận</h2>
             </div>
-            <div class="rounded shadow mt-3">
+            <div class="rounded shadow mt-3 overflow-auto">
                 <?php foreach ($commentList as $comment) { ?>
                     <?php
                     $user = \App\Models\User::getUserbyIDUser($comment->user_id);

@@ -1,5 +1,18 @@
-<?php $this->layout("layouts/default", ["title" => APPNAME]) ?>
-<!--TODO: render trang chủ-->
+<?php use App\Models\Book;
+use App\Models\TheLoai;
+use Illuminate\Database\Capsule\Manager;
+
+$this->layout("layouts/default", ["title" => APPNAME]) ?>
+
+    <!--Dưới những dặm mưa sa
+    Thiết lập mùa hè
+    Đợi anh đến năm 35 tuổi-->
+    <!--TODO: Tìm kiếm-->
+
+<?php
+$popularChapter = Manager::select("SELECT truyen_id FROM CHUONG  GROUP BY TRUYEN_ID ORDER BY SUM(LUOTXEM) DESC LIMIT 6;");
+$newChapter = Manager::select("SELECT * FROM chuong c INNER JOIN ( SELECT truyen_id, MAX(chuong_id) AS max_chuong_id FROM chuong GROUP BY truyen_id) m ON c.truyen_id = m.truyen_id AND c.chuong_id = m.max_chuong_id LIMIT 10;")
+?>
 <?php $this->start("page") ?>
 
     <main>
@@ -16,100 +29,37 @@
                             </div>
 
                             <div class="row px-1">
-                                <!--                            --><?php //for ($i = 0; $i < 10; $i++) { ?>
-                                <div class="col-lg-2 col-sm-6">
-                                    <div class="item2 card mb-4 ">
-                                        <img class="card-img-top w-100 h-50"
-                                             style="height: 284px; object-fit: cover; width: 182px"
-                                             src="https://www.dtv-ebook.com/images/cover_1/he-thong-xuyen-nhanh_-boss-phan-dien-dot-kich-mac-linh.jpg"
-                                             alt="">
-                                        <div class="card-body">
-                                            <h4 class="card-text ">
-                                                <div class="text-truncate" style="max-width:90%">Hệ thống xuyên không:
-                                                    Boss phản diện đột kích
-                                                </div>
-                                                <span>Mặc Linh</span>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--                            --><?php //} ?>
 
-                                <div class="col-lg-2 col-sm-6">
-                                    <div class="item2 card">
-                                        <img class="card-img-top "
-                                             style="height: 284px; object-fit: cover; width: 182px"
-                                             src="https://afamilycdn.com/150157425591193600/2020/6/19/hinh-anh-bong-toi-buon-co-don-3-15925677010351109427971.jpg"
-                                             alt="">
-                                        <div class="card-body">
-                                            <h4 class="card-text ">
-                                                <div class="text-truncate" style="max-width:90%">Đợi anh đến năm 35
-                                                    tuổi
-                                                </div>
-                                                <span class="text-truncate">Nam Khang Bạch Khởi</span>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6">
-                                    <div class="item2 card">
-                                        <img class="card-img-top"
-                                             style="height: 284px; object-fit: cover; width: 182px"
-                                             src="https://salt.tikicdn.com/cache/w1200/media/catalog/product/b/_/b_a_done-2_1.jpg"
-                                             alt="">
-                                        <div class="card-body">
-                                            <h4 class="card-text ">
-                                                <div class="text-truncate" style="max-width:90%">Phế hậu tướng quân
-                                                </div>
-                                                <span>Nhất Độ Quân Hoa</span>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6">
-                                    <div class="item2 card">
-                                        <img class="card-img-top"
-                                             style="height: 284px; object-fit: cover;"
-                                             src="https://i.ytimg.com/vi/_e-E6f2DUXY/maxresdefault.jpg"
-                                             alt="">
-                                        <div class="card-body">
-                                            <h4 class="card-text ">
-                                                <div class="text-truncate" style="max-width:90%">Gió nổi lên rồi</div>
-                                                <span>Triều Lộ Hà Khô</span>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6">
-                                    <div class="item2 card">
-                                        <img class="card-img-top"
-                                             style="height: 284px; object-fit: cover;  "
-                                             src="https://static.trumtruyen.vip/t/exVFmo/thiet-lap-mua-he.jpg"
-                                             alt="">
-                                        <div class="card-body">
-                                            <h4 class="card-text ">
-                                                <div class="text-truncate" style="max-width:90%">Thiết lập màu hè</div>
-                                                <span>Kỉ Ngọc</span>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                foreach ($newChapter as $item) {
 
-                                <div class="col-lg-2 col-sm-6">
-                                    <div class="item2 card">
-                                        <img class="card-img-top"
-                                             style="height: 284px; object-fit: cover;  "
-                                             src="https://storage.googleapis.com/july-bucket/YMRiEarrfizUaeA6Rn1nkPjz"
-                                             alt="">
-                                        <div class="card-body">
-                                            <h4 class="card-text ">
-                                                <div class="text-truncate" style="max-width:90%">Dưới những dặm mưa sa
+                                    $book = Book::getBook($item->truyen_id);
+
+
+                                    ?>
+
+                                    <div class="col-lg-2 col-sm-6">
+                                        <a href="/showBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>">
+                                            <div class="rounded-3 shadow hover card mb-4 ">
+                                                <img class="card-img-top w-100 h-50 "
+                                                     style="min-height: 284px; max-height: 284px; object-fit: cover;width: 182px"
+                                                     src="<?= $book->truyen_img ?>"
+                                                     alt="">
+                                                <div class="card-body">
+                                                    <h4 class="card-text ">
+                                                        <div class="text-truncate card-title"
+                                                             style="max-width:90%"><?= $book->truyen_ten ?>
+                                                        </div>
+                                                        <span class="fs-6"><?= $book->TacGia ?></span>
+                                                    </h4>
                                                 </div>
-                                                <span>Nam Ly</span>
-                                            </h4>
-                                        </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </div>
+
+
+                                <?php } ?>
+
 
                             </div>
 
@@ -119,51 +69,74 @@
             </div>
 
             <!-- truyen moi cap nhat -->
-            <div class="container most-popular border shadow">
+            <div class="container most-popular border shadow mb-5">
                 <div class="table-responsive">
-                    <table class="table 
+                    <div class="heading-section">
+                        <h4>
+                            <em>Vừa cập nhật</em>
+                        </h4>
+                    </div>
+                    <table class="table
                     table-borderless
                     align-middle">
                         <thead class="table-light">
-                        <!-- <caption>Table Name</caption> -->
+
                         <tr>
                             <th style="width:40%">Tên truyện</th>
                             <th style="width:20%">Thể loại</th>
-                            <th style="width:20%">Chương</th>
-                            <th style="width:20%">Cập nhật</th>
+                            <th style="width:20%" class="text-center">Chương</th>
+                            <th style="width:20%" class="text-center">Cập nhật</th>
                         </tr>
                         </thead>
                         <tbody class="table-group-divider">
                         <tr class="">
+                            <?php
+                            foreach ($newChapter
+
+                            as $chapter) {
+                            $book = Book::getBook($chapter->truyen_id);
+
+
+                            ?>
+
                             <td scope="row" class="">
-                                <form action="">
-                                    <input name="id" hidden>
-                                    <button class="btn-link">
-                                        <div class="text-truncate" style="max-width:60%">Hệ thống xuyên không: Boss
-                                            phản diện đột kích
-                                        </div>
-                                    </button>
-                                </form>
+                                <div class="text-truncate" style="max-width:80%">
+                                    <a href="/showBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>">
+                                        <?= $book->truyen_ten ?>
+                                    </a>
+                                </div>
+
+
                             </td>
                             <td class="d-flex">
-                                <form action="">
-                                    <input name="theloai" value="" hidden>
-                                    <button class="btn-link">Ngôn tình</button>
-                                </form>
-                                <form action="">
-                                    <input name="theloai" value="" hidden>
-                                    <button class="btn-link">Xuyên không</button>
-                                </form>
+                                <?php $theLoaiList = explode(", ", $book->truyen_theloai);
+                                $TruyenTheLoai = [];
+                                foreach ($theLoaiList as &$value) {
+                                    $theLoai = TheLoai::getTheLoai(intval($value));
+                                    array_push($TruyenTheLoai, $theLoai->ten_theloai);
+                                }
+                                echo join(', ', $TruyenTheLoai);
+                                ?>
                             </td>
-                            <td>
-                                <form action="">
-                                    <input name="id" hidden>
-                                    <input name="chuong_id" hidden>
-                                    <button class="btn-link">10</button>
-                                </form>
+                            <td class="text-center">
+                                <a href=<?= "/showChapter?truyen={$book->truyen_id}&chuong={$chapter->chuong_id}" ?>>
+                                    <?= 'Chương ' . $chapter->chuong_so ?>
+                                </a>
                             </td>
-                            <td>2 giờ trước</td>
+                            <td class="text-center">
+                                <?php
+                                $updated_at = DateTime::createFromFormat('Y-m-d H:i:s', $chapter->created_at);
+                                $now = new DateTime();
+                                $interval = $updated_at->diff($now);
+                                $hours = $interval->h + ($interval->days * 24);
+                                if ($hours < 24)
+                                    echo $hours . ' giờ trước';
+                                else
+                                    echo intval($hours / 24) . ' ngày trước';
+                                ?>
+                            </td>
                         </tr>
+                        <?php } ?>
                         </tbody>
                         <tfoot>
                         </tfoot>
