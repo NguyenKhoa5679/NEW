@@ -14,7 +14,7 @@ $books = \Illuminate\Database\Capsule\Manager::select("SELECT * from truyen wher
             <div class="heading-section">
                 <h4 class="row">
                     <div class="col-9">
-                        <em>Tìm kiếm</em>
+                        <em>Kết quả tìm kiếm cho <?=$Search?></em>
                         <div class="nav-border" style="width: 15%; height:1px;"></div>
                     </div>
                 </h4>

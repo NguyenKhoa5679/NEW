@@ -11,18 +11,18 @@ $Books = \App\Models\Book::all();
         Quản lý truyện
     </div>
 
-    <table class="table table-striped" id="table1">
+    <table class="table table-striped m-1" id="table1">
         <thead>
-        <tr>
-            <th>STT</th>
-            <th>Tên truyện</th>
-            <th>Tác giả</th>
-            <th>Thể loại</th>
-            <th>Số chương</th>
-            <th>Tình trạng</th>
-            <th>Người đăng</th>
-            <th>Ngày đăng</th>
-            <th>Xóa</th>
+        <tr class="row">
+            <th class="col">STT</th>
+            <th class="col-3">Tên truyện</th>
+            <th class="col">Tác giả</th>
+            <th class="col">Thể loại</th>
+            <th class="col">Số chương</th>
+            <th class="col">Tình trạng</th>
+            <th class="col">Người đăng</th>
+            <th class="col">Ngày đăng</th>
+            <th class="col">Xóa</th>
         </tr>
         </thead>
         <tbody>
@@ -33,18 +33,18 @@ $Books = \App\Models\Book::all();
             $count+= 1;
 
         ?>
-        <tr>
-            <td>
+        <tr class="row">
+            <td class="col">
                 <?=$count?>
             </td>
-            <td class="text-truncate">
+            <td class="text-truncate col-3" >
                 <a href="/showBook?<?= $book->truyen_ten?>&id=<?=$book->truyen_id?>"><?=$book->truyen_ten?></a>
             </td>
-            <td>
+            <td class="col text-truncate">
 
                 <?= $book->TacGia ?>
             </td>
-            <td>
+            <td class="col text-truncate ">
                 <?php $theLoaiList = explode(", ", $book->truyen_theloai);
                 $TruyenTheLoai = [];
                 foreach ($theLoaiList as &$value) {
@@ -54,27 +54,27 @@ $Books = \App\Models\Book::all();
                 echo join(', ', $TruyenTheLoai);
                 ?>
             </td>
-            <td>
+            <td class="col">
                 <?php
                 $soChuong = \App\Models\Chapter::all()->where('truyen_id', $book->truyen_id)->count();
                 echo $soChuong;
                 ?>
             </td>
-            <td>
+            <td class="col text-truncate">
                 <?= $book->truyen_tinhtrang ?>
             </td>
 
-            <td>
+            <td class="col">
                 <?php
                 $user = \App\Models\User::getUserbyIDUser($book->iduser);
                 echo $user->username;
                 ?>
             </td>
-            <td>
+            <td class="col">
                 <?= date_format($date = $book->created_at,'Y -m -d') ?>
             </td>
 
-            <td>
+            <td class="col">
                 <form action="/deleteBookbyAdmin" method="post">
                     <input value="<?= $book->truyen_id ?>" name="idTruyen" hidden>
                     <button type="submit" class="btn">

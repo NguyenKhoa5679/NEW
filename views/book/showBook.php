@@ -57,10 +57,10 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
                                 </div>
                             </div>
 
-                            <div class="detail col-9 mx-2" style="height: fit-content; block-size: fit-content;">
-                                <blockquote style="color: white; font-size: 24px;" class="col-8">
+                            <div class="detail col-9 mx-2  " style="height: 25vh; block-size: fit-content;">
+                                <div style="color: white; font-size: 24px;" class="col-8">
                                     <?= nl2br($BookInfo->truyen_mota) ?>
-                                </blockquote>
+                                </div>
                             </div>
                         </div>
 
@@ -105,7 +105,7 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
             <div class="row">
                 <h2 class="about-book-info col">Danh sách chương</h2>
             </div>
-            <div class="container border rounded shadow overflow-auto">
+            <div class="container border rounded shadow overflow-auto" style="background: white">
                 <?php foreach ($Chaters as $key => $Chapter) { ?>
                     <div class="container p-3 border-bottom row">
                         <a class="col" href=<?= "/showChapter?truyen={$this->e($id)}&chuong={$Chapter->chuong_id}" ?>>
@@ -124,7 +124,7 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
 
         <section class="col-2 me-3">
             <?php if (SessionGuard::isUserLoggedIn()) { ?>
-            <div class="container shadow rounded border mb-3">
+            <div class="container shadow rounded border mb-3" style="background: white">
 
                 <!-- Button trigger modal -->
 
@@ -242,7 +242,7 @@ $commentList = Comment::getCommentOfStory($BookInfo->truyen_id);
             <div class="row">
                 <h2 class="about-book-info col">Bình Luận</h2>
             </div>
-            <div class="border rounded shadow overflow-auto">
+            <div class="border rounded shadow overflow-auto" style="background: white">
                 <?php
                 if (SessionGuard::isUserLoggedIn()) {
                     ?>

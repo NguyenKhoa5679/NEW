@@ -178,7 +178,7 @@ $theLoaiList = TheLoai::all();
                 <a href="/admin/Authors">
                     <div class="shadow rounded-2 p-3 mt-4 hover">
 
-                        <i class="fa fa-custom fa-solid fa-hand"></i> Yêu cầu quyền tác giả
+                        <i class="fa fa-custom fa-solid fa-hand"></i> Yêu cầu trở thành tác giả
 
                     </div>
                 </a>
@@ -209,16 +209,7 @@ $theLoaiList = TheLoai::all();
 </main>
 
 
-<!--<footer class="footer">-->
-<!--    <div class="container-fluid bg-light mt-5 shadow-lg fixed-bottom"> <!-- set background footer -->-->
-<!--        <span>-->
-<!--            <div class="text-center">-->
-<!--               Copyright &copy By NguyenKhoa-->
-<!--            </div>-->
-<!--         </span>-->
-<!--    </div>-->
-<!---->
-<!--</footer>-->
+
 
 <!-- Scripts -->
 

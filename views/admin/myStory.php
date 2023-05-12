@@ -30,7 +30,7 @@ $this->layout("layouts/default", ["title" => APPNAME]) ?>
                     <!--                    Hien thi thong tin -->
                     <a href="/editBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>" class="row col">
                         <div class="col-sm-3 col-lg-2 mx-2">
-                            <img class="card-img-top w-100" style="max-width: 160px; object-fit: cover;"
+                            <img class="card-img-top w-100 img-book2"
                                  src="<?= $book->truyen_img ?>"
                                  alt="">
                         </div>

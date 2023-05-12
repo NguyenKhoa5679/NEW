@@ -1,4 +1,6 @@
 <?php use App\Models\Book;
+use App\Models\Chapter;
+use App\Models\Comment;
 use App\Models\Favorite;
 use App\Models\TheLoai;
 use App\SessionGuard;
@@ -20,7 +22,8 @@ $Favorite = Favorite::getFavoriteListofUser($idUser);
                 </h4>
 
             </div>
-
+        </div>
+        <div class="container p-3  rounded-3 shadow" style="background: white">
             <?php
             foreach ($Favorite as $item) {
                 $book = Book::getBook($item->truyen_id);
@@ -53,15 +56,15 @@ $Favorite = Favorite::getFavoriteListofUser($idUser);
                                 <div class="col">
                                     <i class="fa fa-regular fa-eye fa-custom text-gradient"></i> Lượt xem
                                     <?php
-                                    $luotxem = \App\Models\Chapter::all()->where('truyen_id', $book->truyen_id)->sum('luotxem');
+                                    $luotxem = Chapter::all()->where('truyen_id', $book->truyen_id)->sum('luotxem');
                                     echo $luotxem;
                                     ?>
                                 </div>
                                 <div class="col">
                                     <i class="fa fa-thin fa-star fa-custom"></i> Đánh giá
                                     <?php
-                                    $danhgia = \App\Models\Comment::all()->where('truyen_id', $book->truyen_id)->avg('rating') ?? 0;
-                                    echo number_format($danhgia, 1, '. ');;
+                                    $danhgia = Comment::all()->where('truyen_id', $book->truyen_id)->avg('rating') ?? 0;
+                                    echo number_format($danhgia, 1, '. ');
                                     ?>
 
 
@@ -69,7 +72,7 @@ $Favorite = Favorite::getFavoriteListofUser($idUser);
                                 <div class="col">
                                     <i class="fa fa-light fa-list fa-custom"></i> Chương
                                     <?php
-                                    $soChuong = \App\Models\Chapter::all()->where('truyen_id', $book->truyen_id)->count();
+                                    $soChuong = Chapter::all()->where('truyen_id', $book->truyen_id)->count();
                                     echo $soChuong;
                                     ?>
                                 </div>
@@ -83,6 +86,7 @@ $Favorite = Favorite::getFavoriteListofUser($idUser);
             ?>
 
         </div>
+
     </main>
 
 <?php $this->stop() ?>

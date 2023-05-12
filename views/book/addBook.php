@@ -14,11 +14,11 @@
                 </h4>
 
 
-                <div class="container shadow rounded-3 m-3 p-4">
+                <div class="container shadow rounded-3 m-3 p-4" style="background: white">
                     <form class="" action="" method="POST" enctype="multipart/form-data">
                         <div class="mx-1 mb-4 row">
                             <label class="form-label h3 fw-bold">
-                                Tiêu đề
+                                Tên truyện
                             </label>
                             <div class="">
                                 <input type="text" class="form-control" name="TenTruyen" id="" required>

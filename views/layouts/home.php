@@ -4,14 +4,9 @@ use Illuminate\Database\Capsule\Manager;
 
 $this->layout("layouts/default", ["title" => APPNAME]) ?>
 
-    <!--Dưới những dặm mưa sa
-    Thiết lập mùa hè
-    Đợi anh đến năm 35 tuổi-->
-    <!--TODO: Tìm kiếm-->
-
 <?php
-$popularChapter = Manager::select("SELECT truyen_id FROM CHUONG  GROUP BY TRUYEN_ID ORDER BY SUM(LUOTXEM) DESC LIMIT 6;");
-$newChapter = Manager::select("SELECT * FROM chuong c INNER JOIN ( SELECT truyen_id, MAX(chuong_id) AS max_chuong_id FROM chuong GROUP BY truyen_id) m ON c.truyen_id = m.truyen_id AND c.chuong_id = m.max_chuong_id LIMIT 10;")
+$popularChapter = Manager::select("SELECT truyen_id FROM CHUONG  GROUP BY TRUYEN_ID ORDER BY SUM(LUOTXEM) desc LIMIT 6;");
+$newChapter = Manager::select("SELECT * FROM chuong c INNER JOIN ( SELECT truyen_id, MAX(chuong_id) AS max_chuong_id FROM chuong GROUP BY truyen_id) m ON c.truyen_id = m.truyen_id AND c.chuong_id = m.max_chuong_id Order by created_at  desc LIMIT 10;");
 ?>
 <?php $this->start("page") ?>
 
@@ -19,7 +14,7 @@ $newChapter = Manager::select("SELECT * FROM chuong c INNER JOIN ( SELECT truyen
         <div class="container">
             <div class="page-content">
                 <!-- mostpopular -->
-                <div class="most-popular border shadow">
+                <div class="most-popular border shadow" style="background: white">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="heading-section">
@@ -31,8 +26,9 @@ $newChapter = Manager::select("SELECT * FROM chuong c INNER JOIN ( SELECT truyen
                             <div class="row px-1">
 
                                 <?php
-                                foreach ($newChapter as $item) {
 
+                                foreach ($popularChapter as $item) {
+                                    
                                     $book = Book::getBook($item->truyen_id);
 
 
@@ -58,7 +54,9 @@ $newChapter = Manager::select("SELECT * FROM chuong c INNER JOIN ( SELECT truyen
                                     </div>
 
 
-                                <?php } ?>
+                                <?php
+
+                                } ?>
 
 
                             </div>
@@ -69,7 +67,7 @@ $newChapter = Manager::select("SELECT * FROM chuong c INNER JOIN ( SELECT truyen
             </div>
 
             <!-- truyen moi cap nhat -->
-            <div class="container most-popular border shadow mb-5">
+            <div class="container most-popular border shadow mb-5" style="background: white">
                 <div class="table-responsive">
                     <div class="heading-section">
                         <h4>
@@ -109,6 +107,7 @@ $newChapter = Manager::select("SELECT * FROM chuong c INNER JOIN ( SELECT truyen
 
                             </td>
                             <td class="d-flex">
+                                <div class="text-truncate" style="max-width:80%">
                                 <?php $theLoaiList = explode(", ", $book->truyen_theloai);
                                 $TruyenTheLoai = [];
                                 foreach ($theLoaiList as &$value) {
@@ -117,6 +116,7 @@ $newChapter = Manager::select("SELECT * FROM chuong c INNER JOIN ( SELECT truyen
                                 }
                                 echo join(', ', $TruyenTheLoai);
                                 ?>
+                                </div>
                             </td>
                             <td class="text-center">
                                 <a href=<?= "/showChapter?truyen={$book->truyen_id}&chuong={$chapter->chuong_id}" ?>>

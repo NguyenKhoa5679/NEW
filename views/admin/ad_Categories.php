@@ -60,7 +60,7 @@ $theLoaiList = TheLoai::all();
 $count = 0;
 foreach ($theLoaiList as $theloai) {
     $count += 1;
-    $SoTruyen = Book::where('truyen_theloai', $theloai->truyen_theloai)->count();
+    $SoTruyen = Book::where('truyen_theloai', 'LIKE', '%'.$theloai->truyen_theloai.'%')->count();
     if ($count % 2 == 0) {
         ?>
         <div class="row">

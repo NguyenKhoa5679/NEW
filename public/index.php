@@ -37,7 +37,7 @@ if (\App\SessionGuard::isAdmin()) {
 }
 
 // --------- Book --------
-if (\App\SessionGuard::isAuthor() and \App\SessionGuard::isAdmin()) {
+if (\App\SessionGuard::isAuthor() or \App\SessionGuard::isAdmin()) {
     $router->get('/addBook', '\App\Controllers\Story\storyController@addStory');
     $router->post('/addBook', '\App\Controllers\Story\storyController@createNewStory');
 
@@ -50,7 +50,7 @@ if (\App\SessionGuard::isAuthor() and \App\SessionGuard::isAdmin()) {
 $router->get('/showBook', '\App\Controllers\Story\storyController@showStory');
 
 // --------- Chapter -------
-if (\App\SessionGuard::isAuthor() and \App\SessionGuard::isAdmin()) {
+if (\App\SessionGuard::isAuthor() or \App\SessionGuard::isAdmin()) {
     $router->post('/addChapter', '\App\Controllers\Story\storyController@addChapter');
     $router->post('/handleCreateChapter', '\App\Controllers\Story\storyController@handleCreateChapter');
 

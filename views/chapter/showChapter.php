@@ -18,9 +18,12 @@ $chuong = Chapter::getChapter($this->e($chuong_id));
                         <a href="/showBook?<?= $truyen->truyen_ten ?>&id=<?= $truyen->truyen_id ?>">
                             <h1><?= $truyen->truyen_ten ?></h1></a>
                     </div>
+                    <div class="fs-4 m-3">
+                        Chương <?=$chuong->chuong_so?>: <?=$chuong->chuong_ten?>
+                    </div>
                 </section>
             </div>
-            <div class="chapter_navigator m-auto gap-1">
+            <div class="chapter_navigator m-auto gap-1 mb-3">
                 <?php
                 $previousChapter = Chapter::where('chuong_so', ($chuong->chuong_so - 1))->where('truyen_id', $truyen_id)->first();
                 if (is_null($previousChapter)) {

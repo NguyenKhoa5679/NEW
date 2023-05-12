@@ -20,7 +20,7 @@ $books = \App\Models\Book::getBookByTheLoai($IDTheLoai);
                 </h4>
             </div>
         </div>
-        <div class="container p-3  rounded-3 shadow">
+        <div class="container p-3  rounded-3 shadow" style="background: white">
             <?php foreach ($books as $key => $book) { ?>
                 <div class="row py-3 mx-1 border-bottom">
                     <a href="/showBook?<?= $book->truyen_ten ?>&id=<?= $book->truyen_id ?>" class="row">
